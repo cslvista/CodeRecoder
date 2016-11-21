@@ -22,7 +22,22 @@ namespace CodeRecoder
 
         private void Details_Load(object sender, EventArgs e)
         {
+            richTextBox1.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+        }
 
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SaveFile("c:\\abc.rtf");
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            richTextBox1.LoadFile("c:\\abc.rtf");
         }
     }
 }

@@ -28,5 +28,10 @@ namespace CodeRecoder
             Details form = new Details();
             form.Show(this);
         }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
