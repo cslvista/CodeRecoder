@@ -107,24 +107,24 @@
             this.修改ToolStripMenuItem1,
             this.删除ToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(109, 76);
             // 
             // 新增ToolStripMenuItem1
             // 
             this.新增ToolStripMenuItem1.Name = "新增ToolStripMenuItem1";
-            this.新增ToolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
+            this.新增ToolStripMenuItem1.Size = new System.Drawing.Size(108, 24);
             this.新增ToolStripMenuItem1.Text = "新增";
             // 
             // 修改ToolStripMenuItem1
             // 
             this.修改ToolStripMenuItem1.Name = "修改ToolStripMenuItem1";
-            this.修改ToolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
+            this.修改ToolStripMenuItem1.Size = new System.Drawing.Size(108, 24);
             this.修改ToolStripMenuItem1.Text = "修改";
             // 
             // 删除ToolStripMenuItem1
             // 
             this.删除ToolStripMenuItem1.Name = "删除ToolStripMenuItem1";
-            this.删除ToolStripMenuItem1.Size = new System.Drawing.Size(114, 26);
+            this.删除ToolStripMenuItem1.Size = new System.Drawing.Size(108, 24);
             this.删除ToolStripMenuItem1.Text = "删除";
             // 
             // gridView1
@@ -171,24 +171,24 @@
             this.修改ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(115, 82);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(109, 76);
             // 
             // 新增ToolStripMenuItem
             // 
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
             this.新增ToolStripMenuItem.Text = "新增";
             // 
             // 修改ToolStripMenuItem
             // 
             this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
             this.修改ToolStripMenuItem.Text = "修改";
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
             this.删除ToolStripMenuItem.Text = "删除";
             // 
             // gridView2
@@ -322,6 +322,7 @@
             this.ClientSize = new System.Drawing.Size(1158, 781);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "代码记录";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

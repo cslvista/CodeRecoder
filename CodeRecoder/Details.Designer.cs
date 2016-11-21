@@ -70,7 +70,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(655, 486);
+            this.textBox2.Size = new System.Drawing.Size(665, 486);
             this.textBox2.TabIndex = 2;
             // 
             // label2
@@ -96,7 +96,7 @@
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(509, 20);
+            this.simpleButton2.Location = new System.Drawing.Point(533, 20);
             this.simpleButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(71, 30);
@@ -108,7 +108,7 @@
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(509, 60);
+            this.simpleButton1.Location = new System.Drawing.Point(533, 60);
             this.simpleButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(71, 30);
@@ -121,7 +121,7 @@
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.label2);
             this.panelControl1.Controls.Add(this.textBox3);
-            this.panelControl1.Location = new System.Drawing.Point(12, 11);
+            this.panelControl1.Location = new System.Drawing.Point(36, 11);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(473, 91);
             this.panelControl1.TabIndex = 9;
@@ -138,7 +138,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(661, 607);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(671, 607);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // panel1
@@ -149,16 +149,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(655, 109);
+            this.panel1.Size = new System.Drawing.Size(665, 109);
             this.panel1.TabIndex = 0;
             // 
             // Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 607);
+            this.ClientSize = new System.Drawing.Size(671, 607);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Details";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "内容";
             this.Load += new System.EventHandler(this.Details_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
