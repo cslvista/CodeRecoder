@@ -19,12 +19,13 @@ namespace CodeRecoder
         SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
         SQLiteDataAdapter DataAdapter = null;
 
-        public StringBuilder SelectCategoryID = new StringBuilder();
+        public StringBuilder SelectID = new StringBuilder();
         public StringBuilder SelectCategory = new StringBuilder();
         public StringBuilder SelectGroupID = new StringBuilder();
         public StringBuilder SelectGroupName = new StringBuilder();
         public StringBuilder SelectItemID = new StringBuilder();
         public StringBuilder SelectItemName = new StringBuilder();
+        public StringBuilder SelectItemType = new StringBuilder();
 
 
 
@@ -45,19 +46,19 @@ namespace CodeRecoder
                 KnowledgeItem form = new KnowledgeItem();
                 form.Show(this);
             }
-           
+
         }
 
 
         private void gridControl1_Click(object sender, EventArgs e)
         {
-            SelectCategoryID.Length = 0;
+            SelectID.Length = 0;
             SelectCategory.Length = 0;
             Item.Clear();
             //1.获取主表内容
             try
             {
-                SelectCategoryID.Append(gridView1.GetFocusedRowCellValue("ID").ToString());
+                SelectID.Append(gridView1.GetFocusedRowCellValue("ID").ToString());
                 SelectCategory.Append(gridView1.GetFocusedRowCellValue("Category").ToString());
             }
             catch
@@ -74,14 +75,18 @@ namespace CodeRecoder
             string sql = "";
             if (comboBox1.Text == "代码")
             {
-                sql = string.Format("select * from FileItem where ID='{0}'", SelectCategoryID.ToString());
+                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='0'", SelectID.ToString());
             }
-            else
+            else if (comboBox1.Text == "知识点")
             {
-                sql = string.Format("select * from KnowledgeItem where ID='{0}'", SelectCategoryID.ToString());
+                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='1'", SelectID.ToString());
+            }
+            else if (comboBox1.Text == "全部")
+            {
+                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}'", SelectID.ToString());
             }
 
-            SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
 
             try
             {
@@ -150,8 +155,27 @@ namespace CodeRecoder
         {
             try
             {
-                FileItem form = new FileItem();
-                form.Show(this);
+                if (SelectItemType.ToString()=="1")
+                {
+                    FileItem form = new FileItem();
+                    form.ID = SelectID.ToString();
+                    form.GroupID = SelectGroupID.ToString();
+                    form.GroupName = SelectGroupName.ToString();
+                    form.ItemID = SelectItemID.ToString();
+                    form.ItemName = SelectItemName.ToString();
+                    form.Show(this);
+                }else if (SelectItemType.ToString() == "0")
+                {
+                    KnowledgeItem form = new KnowledgeItem();
+                    form.ID =SelectID.ToString();
+                    form.GroupID = SelectGroupID.ToString();
+                    form.GroupName = SelectGroupName.ToString();
+                    form.ItemID = SelectItemID.ToString();
+                    form.ItemName = SelectItemName.ToString();
+                    form.alter = true;
+                    form.Show(this);
+                }
+                
             }
             catch { }
             
@@ -166,14 +190,15 @@ namespace CodeRecoder
         private void 修改ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AlterCategory form = new AlterCategory();
-            form.ID = SelectCategoryID.ToString();
+            form.ID = SelectID.ToString();
             form.Category = SelectCategory.ToString();
             form.Show(this);
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-
+            DelItem form = new DelItem();
+            form.Show(this);
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
@@ -188,13 +213,14 @@ namespace CodeRecoder
             SelectGroupName.Length = 0;
             SelectItemID.Length = 0;
             SelectItemName.Length = 0;
-
+            SelectItemType.Length = 0;
             try
             {
                 SelectGroupID.Append(gridView1.GetFocusedRowCellValue("GroupID").ToString());
                 SelectGroupName.Append(gridView1.GetFocusedRowCellValue("GroupName").ToString());
                 SelectItemID.Append(gridView1.GetFocusedRowCellValue("ItemID").ToString());
                 SelectItemName.Append(gridView1.GetFocusedRowCellValue("ItemName").ToString());
+                SelectItemType.Append(gridView1.GetFocusedRowCellValue("ItemType").ToString());
             }
             catch
             {
@@ -223,6 +249,56 @@ namespace CodeRecoder
             {
                 gridControl1_Click(null, null);
             }
+        }
+
+        private void 刷新ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchCategory();
+        }
+
+        private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            simpleButton1_Click(null, null);
+        }
+
+        private void gridControl2_DoubleClick(object sender, EventArgs e)
+        {
+            SelectGroupID.Length = 0;
+            SelectGroupName.Length = 0;
+            SelectItemID.Length = 0;
+            SelectItemName.Length = 0;
+            SelectItemType.Length = 0;
+            try
+            {
+                SelectGroupID.Append(gridView1.GetFocusedRowCellValue("GroupID").ToString());
+                SelectGroupName.Append(gridView1.GetFocusedRowCellValue("GroupName").ToString());
+                SelectItemID.Append(gridView1.GetFocusedRowCellValue("ItemID").ToString());
+                SelectItemName.Append(gridView1.GetFocusedRowCellValue("ItemName").ToString());
+                SelectItemType.Append(gridView1.GetFocusedRowCellValue("ItemType").ToString());
+                if (SelectItemType.ToString() == "0")
+                {
+                    FileItem form = new FileItem();
+                    form.Show(this);
+                }else
+                {
+                    KnowledgeItem form = new KnowledgeItem();
+                    form.Show(this);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void gridControl2_MouseUp(object sender, MouseEventArgs e)
+        {
+            gridControl2_Click(null, null);
+        }
+
+        private void simpleButton1_Click_2(object sender, EventArgs e)
+        {
+            SearchItem();
         }
     }
 }

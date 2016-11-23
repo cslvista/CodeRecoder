@@ -42,6 +42,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.名称 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,10 +59,12 @@
             this.项目编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.标题 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.日期 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.类型 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -102,6 +105,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.comboBox1);
             this.panelControl1.Controls.Add(this.searchControl1);
             this.panelControl1.Controls.Add(this.ButtonAdd);
@@ -121,8 +125,9 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "代码",
-            "知识点"});
-            this.comboBox1.Location = new System.Drawing.Point(18, 14);
+            "知识点",
+            "全部"});
+            this.comboBox1.Location = new System.Drawing.Point(25, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(64, 25);
             this.comboBox1.TabIndex = 6;
@@ -131,7 +136,7 @@
             // searchControl1
             // 
             this.searchControl1.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
-            this.searchControl1.Location = new System.Drawing.Point(296, 15);
+            this.searchControl1.Location = new System.Drawing.Point(354, 15);
             this.searchControl1.Margin = new System.Windows.Forms.Padding(2);
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -214,9 +219,10 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新增ToolStripMenuItem1,
-            this.修改ToolStripMenuItem1});
+            this.修改ToolStripMenuItem1,
+            this.刷新ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 70);
             // 
             // 新增ToolStripMenuItem1
             // 
@@ -231,6 +237,13 @@
             this.修改ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.修改ToolStripMenuItem1.Text = "修改";
             this.修改ToolStripMenuItem1.Click += new System.EventHandler(this.修改ToolStripMenuItem1_Click);
+            // 
+            // 刷新ToolStripMenuItem
+            // 
+            this.刷新ToolStripMenuItem.Name = "刷新ToolStripMenuItem";
+            this.刷新ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.刷新ToolStripMenuItem.Text = "刷新";
+            this.刷新ToolStripMenuItem.Click += new System.EventHandler(this.刷新ToolStripMenuItem_Click);
             // 
             // gridView1
             // 
@@ -282,6 +295,8 @@
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             this.gridControl2.Click += new System.EventHandler(this.gridControl2_Click);
+            this.gridControl2.DoubleClick += new System.EventHandler(this.gridControl2_DoubleClick);
+            this.gridControl2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gridControl2_MouseUp);
             // 
             // contextMenuStrip2
             // 
@@ -300,6 +315,7 @@
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
             this.新增ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.新增ToolStripMenuItem.Text = "新增";
+            this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
             // 
             // 修改ToolStripMenuItem
             // 
@@ -337,7 +353,8 @@
             this.组名,
             this.项目编号,
             this.标题,
-            this.日期});
+            this.日期,
+            this.类型});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.GroupCount = 1;
             this.gridView2.Name = "gridView2";
@@ -355,7 +372,7 @@
             this.组编号.Name = "组编号";
             this.组编号.Visible = true;
             this.组编号.VisibleIndex = 0;
-            this.组编号.Width = 91;
+            this.组编号.Width = 80;
             // 
             // 组名
             // 
@@ -372,7 +389,7 @@
             this.项目编号.Name = "项目编号";
             this.项目编号.Visible = true;
             this.项目编号.VisibleIndex = 1;
-            this.项目编号.Width = 80;
+            this.项目编号.Width = 90;
             // 
             // 标题
             // 
@@ -381,7 +398,7 @@
             this.标题.Name = "标题";
             this.标题.Visible = true;
             this.标题.VisibleIndex = 2;
-            this.标题.Width = 278;
+            this.标题.Width = 274;
             // 
             // 日期
             // 
@@ -390,7 +407,12 @@
             this.日期.Name = "日期";
             this.日期.Visible = true;
             this.日期.VisibleIndex = 3;
-            this.日期.Width = 135;
+            this.日期.Width = 140;
+            // 
+            // 类型
+            // 
+            this.类型.Caption = "类型";
+            this.类型.Name = "类型";
             // 
             // panelControl2
             // 
@@ -438,6 +460,19 @@
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 18);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(287, 15);
+            this.simpleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(53, 24);
+            this.simpleButton1.TabIndex = 7;
+            this.simpleButton1.Text = "刷新";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_2);
             // 
             // main
             // 
@@ -504,6 +539,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn 组编号;
         private DevExpress.XtraGrid.Columns.GridColumn 项目编号;
         private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn 类型;
+        private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 

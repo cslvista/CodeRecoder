@@ -10,14 +10,13 @@ using System.Windows.Forms;
 
 namespace CodeRecoder
 {
-    public partial class FileItem : Form
+    public partial class Details : Form
     {
-        public string ID = "";
-        public string GroupID = "";
-        public string GroupName = "";
-        public string ItemID = "";
-        public string ItemName = "";
-        public FileItem()
+        public string chapter="";
+        public string title = "";
+        public string path = "";
+        public string content = "";
+        public Details()
         {
             InitializeComponent();
         }
@@ -29,10 +28,10 @@ namespace CodeRecoder
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-           string realPath="" ;
+            string path = "";
             try
             {
-                //richTextBox1.SaveFile(@path);
+                richTextBox1.SaveFile(path);
                 this.Close();
             }
             catch (Exception ex)
@@ -51,7 +50,7 @@ namespace CodeRecoder
         {
             try
             {
-                //richTextBox1.LoadFile(path);
+                richTextBox1.LoadFile(path);
             }
             catch (Exception ex)
             {

@@ -70,6 +70,12 @@
     <Compile Include="AlterCategory.Designer.cs">
       <DependentUpon>AlterCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlterGroupName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlterGroupName.Designer.cs">
+      <DependentUpon>AlterGroupName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="DelItem.cs">
       <SubType>Form</SubType>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlterCategory.resx">
       <DependentUpon>AlterCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlterGroupName.resx">
+      <DependentUpon>AlterGroupName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DelItem.resx">
       <DependentUpon>DelItem.cs</DependentUpon>
