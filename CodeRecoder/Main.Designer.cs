@@ -412,6 +412,7 @@
             // 类型
             // 
             this.类型.Caption = "类型";
+            this.类型.FieldName = "ItemType";
             this.类型.Name = "类型";
             // 
             // panelControl2

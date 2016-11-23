@@ -94,6 +94,7 @@
             this.simpleButton3.Size = new System.Drawing.Size(53, 24);
             this.simpleButton3.TabIndex = 10;
             this.simpleButton3.Text = "重置";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // simpleButton1
             // 

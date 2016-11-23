@@ -34,7 +34,7 @@ namespace CodeRecoder
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", textBox1.Text.Trim(), textBox2.Text.Trim());
+            string sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString());
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
             try
             {
@@ -70,7 +70,7 @@ namespace CodeRecoder
                     SQLiteDataReader reader = comm.ExecuteReader();
                     while (reader.Read())
                     {
-                        textBox2.Text=reader.GetString(1);
+                        textBox2.Text=reader.GetString(0);
                     }
                     conn.Close();
                 }
@@ -87,6 +87,11 @@ namespace CodeRecoder
                 textBox1.Text = GroupName;
                 textBox1.ReadOnly = true;
             }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

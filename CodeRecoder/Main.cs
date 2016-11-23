@@ -123,6 +123,7 @@ namespace CodeRecoder
             Item.Columns.Add("ID", typeof(string));
             Item.Columns.Add("GroupID", typeof(string));
             Item.Columns.Add("GroupName", typeof(string));
+            Item.Columns.Add("ItemType", typeof(string));
             Item.Columns.Add("ItemID", typeof(string));
             Item.Columns.Add("ItemName", typeof(string));
             Item.Columns.Add("Time", typeof(string));
