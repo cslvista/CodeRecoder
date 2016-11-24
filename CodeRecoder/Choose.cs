@@ -26,6 +26,7 @@ namespace CodeRecoder
                 KnowledgeItem form = new KnowledgeItem();
                 form.ID = ID;
                 form.Category = Category;
+                form.addNew = true;
                 form.Show();
             }
             else if (radioButton2.Checked == true)
@@ -33,6 +34,7 @@ namespace CodeRecoder
                 FileItem form = new FileItem();
                 form.ID = ID;
                 form.Category = Category;
+                form.addNew = true;
                 form.Show();
             }
             this.Close();

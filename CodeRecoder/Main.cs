@@ -46,6 +46,7 @@ namespace CodeRecoder
                 FileItem form = new FileItem();
                 form.ID = SelectID.ToString();
                 form.Category = SelectCategory.ToString();
+                form.addNew = true;
                 form.Show(this);
             }
             else if(comboBox1.Text == "知识点")
@@ -53,6 +54,7 @@ namespace CodeRecoder
                 KnowledgeItem form = new KnowledgeItem();
                 form.ID = SelectID.ToString();
                 form.Category = SelectCategory.ToString();
+                form.addNew = true;
                 form.Show(this);
             }else if (comboBox1.Text == "全部")
             {
@@ -176,21 +178,22 @@ namespace CodeRecoder
                 {
                     FileItem form = new FileItem();
                     form.ID = SelectID.ToString();
+                    form.Category = SelectCategory.ToString();
                     form.GroupID = SelectGroupID.ToString();
                     form.GroupName = SelectGroupName.ToString();
                     form.ItemID = SelectItemID.ToString();
                     form.ItemName = SelectItemName.ToString();
-                    
+                    form.alter = true;
                     form.Show(this);
                 }else if (SelectItemType.ToString() == "0")
                 {
                     KnowledgeItem form = new KnowledgeItem();
                     form.ID =SelectID.ToString();
+                    form.Category = SelectCategory.ToString();
                     form.GroupID = SelectGroupID.ToString();
                     form.GroupName = SelectGroupName.ToString();
                     form.ItemID = SelectItemID.ToString();
-                    form.ItemName = SelectItemName.ToString();
-                    form.Category = SelectCategory.ToString();
+                    form.ItemName = SelectItemName.ToString();                    
                     form.alter = true;
                     form.Show(this);
                 }
@@ -292,7 +295,8 @@ namespace CodeRecoder
 
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            simpleButton1_Click(null, null);
+
+           
         }
 
         private void gridControl2_DoubleClick(object sender, EventArgs e)
@@ -304,18 +308,32 @@ namespace CodeRecoder
             SelectItemType.Length = 0;
             try
             {
-                SelectGroupID.Append(gridView1.GetFocusedRowCellValue("GroupID").ToString());
-                SelectGroupName.Append(gridView1.GetFocusedRowCellValue("GroupName").ToString());
-                SelectItemID.Append(gridView1.GetFocusedRowCellValue("ItemID").ToString());
-                SelectItemName.Append(gridView1.GetFocusedRowCellValue("ItemName").ToString());
-                SelectItemType.Append(gridView1.GetFocusedRowCellValue("ItemType").ToString());
-                if (SelectItemType.ToString() == "0")
+                SelectGroupID.Append(gridView2.GetFocusedRowCellValue("GroupID").ToString());
+                SelectGroupName.Append(gridView2.GetFocusedRowCellValue("GroupName").ToString());
+                SelectItemID.Append(gridView2.GetFocusedRowCellValue("ItemID").ToString());
+                SelectItemName.Append(gridView2.GetFocusedRowCellValue("ItemName").ToString());
+                SelectItemType.Append(gridView2.GetFocusedRowCellValue("ItemType").ToString());
+                if (SelectItemType.ToString() == "1")
                 {
                     FileItem form = new FileItem();
+                    form.ID = SelectID.ToString();
+                    form.Category = SelectCategory.ToString();
+                    form.GroupID = SelectGroupID.ToString();
+                    form.GroupName = SelectGroupName.ToString();
+                    form.ItemID= SelectItemID.ToString();
+                    form.ItemName = SelectItemName.ToString();
+                    form.alter = true;
                     form.Show(this);
                 }else
                 {
                     KnowledgeItem form = new KnowledgeItem();
+                    form.ID = SelectID.ToString();
+                    form.Category = SelectCategory.ToString();
+                    form.GroupID = SelectGroupID.ToString();
+                    form.GroupName = SelectGroupName.ToString();
+                    form.ItemID = SelectItemID.ToString();
+                    form.ItemName = SelectItemName.ToString();
+                    form.alter = true;
                     form.Show(this);
                 }
             }
@@ -343,6 +361,40 @@ namespace CodeRecoder
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ButtonDelete_Click(null, null);
+        }
+
+        private void gridView2_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "ItemType")
+            {
+                switch (e.Value.ToString())
+                {
+                    case "0": e.DisplayText = "知识点"; break;
+                    case "1": e.DisplayText = "代码"; break;
+                }
+            }
+        }
+
+        private void 代码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                FileItem form = new FileItem();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
+                form.GroupID = SelectGroupID.ToString();
+                form.GroupName = SelectGroupName.ToString();
+                form.addNewGroup = true;
+                form.Show(this);                        
+        }
+
+        private void 知识点ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                KnowledgeItem form = new KnowledgeItem();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
+                form.GroupID = SelectGroupID.ToString();
+                form.GroupName = SelectGroupName.ToString();
+                form.addNewGroup = true;
+                form.Show(this);
         }
     }
 }

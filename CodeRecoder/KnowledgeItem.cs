@@ -42,18 +42,19 @@ namespace CodeRecoder
                 return;
             }
 
-
+            //写入数据库
             string sql = "";
 
             if (addNew == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
-            }else if (addNewGroup == true)                
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, textBox1.Text.Trim(), 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+            }
+            else if (addNewGroup == true)                
             {
                 sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }else if (alter == true)
             {
-                sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}')", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}'", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"),ID,GroupID,ItemID);
             }
 
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
@@ -81,22 +82,21 @@ namespace CodeRecoder
         {
             this.Text = "知识点 " + string.Format("({0})",Category);
 
-            if (alter == true)
+            if (alter == true)//如果是修改，则获取答案
             {
                 textBox1.Text = GroupName;
                 textBox1.ReadOnly = true;
                 textBox3.Text = ItemName;
 
+                //获取答案
                 string sql =string.Format("select ItemSolution from Item where ID='{0}' and GroupID='{1}' and ItemID='{2}'",ID,GroupID,ItemID);
                 try
                 {
                     conn.Open();
                     SQLiteCommand comm = new SQLiteCommand(sql, conn);
                     SQLiteDataReader reader = comm.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        textBox2.Text=reader.GetString(0);
-                    }
+                    reader.Read();
+                    textBox2.Text = reader.GetString(0);
                     conn.Close();
                 }
 
@@ -107,11 +107,75 @@ namespace CodeRecoder
                     return;
                 }
             }
-            else if (addNewGroup == true)
+            else if (addNewGroup == true) //往组中添加项
             {
                 textBox1.Text = GroupName;
                 textBox1.ReadOnly = true;
+                
+                //获取项目编号
+                string sql = string.Format("select max(ItemID) from Item where ID='{0}' and GroupID='{1}' ", ID, GroupID);
+                try
+                {
+                    conn.Open();
+                    SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                    SQLiteDataReader reader = comm.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        ItemID = (reader.GetInt32(0) + 1).ToString();
+                    }
+                    else
+                    {
+                        ItemID = "1";
+                    }                                      
+                    conn.Close();
+                }
+
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
             }
+            else if (addNew== true)//添加新的组
+            {
+                ItemID = "1";
+
+                //获取组号
+                string sql = string.Format("select max(GroupID) from Item where ID='{0}' ", ID);
+                try
+                {
+                    conn.Open();
+                    SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                    SQLiteDataReader reader = comm.ExecuteReader(); 
+                    try
+                    {
+                        reader.Read();
+                        GroupID = (reader.GetInt32(0) + 1).ToString();
+                    }
+                    catch
+                    {
+                        GroupID = "1";
+                    }
+
+                    conn.Close();
+                 }
+
+                    catch (Exception ex)
+                    {
+                        conn.Close();
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                }
+            
+
+            label4.Text = "组号："+GroupID;
+            label3.Text = "编号："+ItemID;
+            textBox1.Text = GroupName;
+            textBox3.Text = ItemName;
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)

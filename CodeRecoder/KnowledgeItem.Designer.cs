@@ -41,8 +41,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -123,7 +123,7 @@
             this.panelControl1.Location = new System.Drawing.Point(13, 11);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(239, 73);
+            this.panelControl1.Size = new System.Drawing.Size(254, 73);
             this.panelControl1.TabIndex = 13;
             // 
             // textBox1
@@ -132,7 +132,7 @@
             this.textBox1.Location = new System.Drawing.Point(56, 10);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 23);
+            this.textBox1.Size = new System.Drawing.Size(181, 23);
             this.textBox1.TabIndex = 0;
             // 
             // label1
@@ -163,7 +163,7 @@
             this.textBox3.Location = new System.Drawing.Point(56, 39);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(170, 23);
+            this.textBox3.Size = new System.Drawing.Size(181, 23);
             this.textBox3.TabIndex = 4;
             // 
             // textBox2
@@ -180,21 +180,10 @@
             // 
             this.panelControl3.Controls.Add(this.label4);
             this.panelControl3.Controls.Add(this.label3);
-            this.panelControl3.Location = new System.Drawing.Point(257, 11);
+            this.panelControl3.Location = new System.Drawing.Point(272, 11);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(111, 73);
+            this.panelControl3.Size = new System.Drawing.Size(96, 73);
             this.panelControl3.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(5, 37);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "编号：";
             // 
             // label4
             // 
@@ -206,6 +195,17 @@
             this.label4.Size = new System.Drawing.Size(51, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "组号：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(5, 41);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "编号：";
             // 
             // KnowledgeItem
             // 

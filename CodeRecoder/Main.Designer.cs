@@ -55,7 +55,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.修改组名toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.组编号 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.组号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.组名 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.项目编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.标题 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,6 +65,8 @@
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.代码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.知识点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -325,9 +327,12 @@
             // 
             // 新增ToolStripMenuItem
             // 
+            this.新增ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.代码ToolStripMenuItem,
+            this.知识点ToolStripMenuItem});
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
             this.新增ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.新增ToolStripMenuItem.Text = "新增（组）";
+            this.新增ToolStripMenuItem.Text = "新增（项）";
             this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
             // 
             // 修改ToolStripMenuItem
@@ -364,7 +369,7 @@
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.组编号,
+            this.组号,
             this.组名,
             this.项目编号,
             this.标题,
@@ -379,15 +384,16 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.组名, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView2.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView2_CustomColumnDisplayText);
             // 
-            // 组编号
+            // 组号
             // 
-            this.组编号.Caption = "组编号";
-            this.组编号.FieldName = "GroupID";
-            this.组编号.Name = "组编号";
-            this.组编号.Visible = true;
-            this.组编号.VisibleIndex = 0;
-            this.组编号.Width = 80;
+            this.组号.Caption = "组号";
+            this.组号.FieldName = "GroupID";
+            this.组号.Name = "组号";
+            this.组号.Visible = true;
+            this.组号.VisibleIndex = 0;
+            this.组号.Width = 80;
             // 
             // 组名
             // 
@@ -399,7 +405,7 @@
             // 
             // 项目编号
             // 
-            this.项目编号.Caption = "项目编号";
+            this.项目编号.Caption = "编号";
             this.项目编号.FieldName = "ItemID";
             this.项目编号.Name = "项目编号";
             this.项目编号.Visible = true;
@@ -479,6 +485,20 @@
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
+            // 代码ToolStripMenuItem
+            // 
+            this.代码ToolStripMenuItem.Name = "代码ToolStripMenuItem";
+            this.代码ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.代码ToolStripMenuItem.Text = "代码";
+            this.代码ToolStripMenuItem.Click += new System.EventHandler(this.代码ToolStripMenuItem_Click);
+            // 
+            // 知识点ToolStripMenuItem
+            // 
+            this.知识点ToolStripMenuItem.Name = "知识点ToolStripMenuItem";
+            this.知识点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.知识点ToolStripMenuItem.Text = "知识点";
+            this.知识点ToolStripMenuItem.Click += new System.EventHandler(this.知识点ToolStripMenuItem_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -541,12 +561,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 修改组名toolStripMenuItem;
         private DevExpress.XtraGrid.Columns.GridColumn 日期;
-        private DevExpress.XtraGrid.Columns.GridColumn 组编号;
+        private DevExpress.XtraGrid.Columns.GridColumn 组号;
         private DevExpress.XtraGrid.Columns.GridColumn 项目编号;
         private System.Windows.Forms.ComboBox comboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn 类型;
         private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.ToolStripMenuItem 代码ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 知识点ToolStripMenuItem;
     }
 }
 
