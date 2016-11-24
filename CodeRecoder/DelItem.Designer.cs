@@ -55,7 +55,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(14, 22);
+            this.label1.Location = new System.Drawing.Point(23, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 19);
             this.label1.TabIndex = 10;
@@ -65,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(14, 50);
+            this.label2.Location = new System.Drawing.Point(23, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 19);
             this.label2.TabIndex = 11;
@@ -75,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(14, 78);
+            this.label3.Location = new System.Drawing.Point(23, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 19);
             this.label3.TabIndex = 12;
@@ -85,7 +85,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(14, 106);
+            this.label4.Location = new System.Drawing.Point(23, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 19);
             this.label4.TabIndex = 13;
@@ -114,6 +114,7 @@
             this.Controls.Add(this.simpleButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DelItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "删除项目";

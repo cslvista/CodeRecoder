@@ -70,6 +70,7 @@ namespace CodeRecoder
                     {
                         ItemID = "1";
                     }
+                    reader.Close();
                     conn.Close();
                 }
 
@@ -101,7 +102,7 @@ namespace CodeRecoder
                     {
                         GroupID = "1";
                     }
-
+                    reader.Close();
                     conn.Close();
                 }
 
@@ -147,11 +148,11 @@ namespace CodeRecoder
             string sql = "";
             if (addNew == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, textBox1.Text.Trim(), 1, ItemID, textBox3.Text, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, textBox1.Text.Trim(), 1, ItemID, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }
             else if (addNewGroup == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, GroupName, 1, ItemID, textBox3.Text, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, GroupName, 1, ItemID, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }
             else if (alter == true)
             {

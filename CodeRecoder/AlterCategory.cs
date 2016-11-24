@@ -40,12 +40,16 @@ namespace CodeRecoder
             string sql = "";
 
             if (checkBox1.Checked == true)
-            { 
-                sql = string.Format("delete from Category where ID='{0}'",ID);
+            {
+                sql = string.Format("delete from Category where ID='{0}'", ID)
+                    + ";"
+                    + string.Format("delete from Item where ID='{0}'", ID);
             }
             else
             {
-                sql = string.Format("update Category set ID='{0}',Category='{1}' where ID='{0}'", textBox1.Text.Trim(), textBox2.Text.Trim(),ID);
+                sql = string.Format("update Category set ID='{0}',Category='{1}' where ID='{2}'", textBox1.Text.Trim(), textBox2.Text.Trim(),ID)
+                    + ";"
+                    + string.Format("update Item set ID='{0}' where ID='{1}'", textBox1.Text.Trim(),ID);
 
             }
 
@@ -68,7 +72,11 @@ namespace CodeRecoder
             {
                 if (checkBox1.Checked == true)
                 {
-                    Directory.Delete(totalPath,true);
+                    if (Directory.Exists(totalPath) == true)
+                    {
+                        Directory.Delete(totalPath, true);
+                    }
+                    
                 }
                 else
                 {

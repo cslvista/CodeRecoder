@@ -13,8 +13,7 @@ namespace CodeRecoder
 {
     public partial class KnowledgeItem : Form
     {
-        SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
-
+       
         public string ID = "";
         public string Category = "";
         public string GroupID = "";
@@ -57,21 +56,25 @@ namespace CodeRecoder
                 sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}'", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"),ID,GroupID,ItemID);
             }
 
-            SQLiteCommand comm = new SQLiteCommand(sql, conn);
-            try
+            using (SQLiteConnection conn1 = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db"))
             {
-                conn.Open();
-                comm.ExecuteNonQuery();
-                conn.Close();
+                using (SQLiteCommand comm = new SQLiteCommand(sql, conn1))
+                {
+                    try
+                    {
+                        conn1.Open();
+                        comm.ExecuteNonQuery();
+                        conn1.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        conn1.Close();
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                conn.Close();
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
-
+                            
             //写回主界面
             main form = (main)this.Owner;
             form.SearchItem();
@@ -80,6 +83,8 @@ namespace CodeRecoder
 
         private void KnowledgeItem_Load(object sender, EventArgs e)
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+
             this.Text = "知识点 " + string.Format("({0})",Category);
 
             if (alter == true)//如果是修改，则获取答案
@@ -89,7 +94,7 @@ namespace CodeRecoder
                 textBox3.Text = ItemName;
 
                 //获取答案
-                string sql =string.Format("select ItemSolution from Item where ID='{0}' and GroupID='{1}' and ItemID='{2}'",ID,GroupID,ItemID);
+                string sql = string.Format("select ItemSolution from Item where ID='{0}' and GroupID='{1}' and ItemID='{2}'", ID, GroupID, ItemID);
                 try
                 {
                     conn.Open();
@@ -97,6 +102,7 @@ namespace CodeRecoder
                     SQLiteDataReader reader = comm.ExecuteReader();
                     reader.Read();
                     textBox2.Text = reader.GetString(0);
+                    reader.Close();
                     conn.Close();
                 }
 
@@ -111,7 +117,7 @@ namespace CodeRecoder
             {
                 textBox1.Text = GroupName;
                 textBox1.ReadOnly = true;
-                
+
                 //获取项目编号
                 string sql = string.Format("select max(ItemID) from Item where ID='{0}' and GroupID='{1}' ", ID, GroupID);
                 try
@@ -127,7 +133,8 @@ namespace CodeRecoder
                     else
                     {
                         ItemID = "1";
-                    }                                      
+                    }
+                    reader.Close();
                     conn.Close();
                 }
 
@@ -149,7 +156,7 @@ namespace CodeRecoder
                 {
                     conn.Open();
                     SQLiteCommand comm = new SQLiteCommand(sql, conn);
-                    SQLiteDataReader reader = comm.ExecuteReader(); 
+                    SQLiteDataReader reader = comm.ExecuteReader();
                     try
                     {
                         reader.Read();
@@ -160,16 +167,17 @@ namespace CodeRecoder
                         GroupID = "1";
                     }
 
+                    reader.Close();
                     conn.Close();
-                 }
-
-                    catch (Exception ex)
-                    {
-                        conn.Close();
-                        MessageBox.Show(ex.Message);
-                        return;
-                    }
                 }
+
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
             
 
             label4.Text = "组号："+GroupID;

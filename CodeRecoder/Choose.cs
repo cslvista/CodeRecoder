@@ -27,7 +27,7 @@ namespace CodeRecoder
                 form.ID = ID;
                 form.Category = Category;
                 form.addNew = true;
-                form.Show();
+                form.Show(this.Owner);
             }
             else if (radioButton2.Checked == true)
             {
@@ -35,7 +35,7 @@ namespace CodeRecoder
                 form.ID = ID;
                 form.Category = Category;
                 form.addNew = true;
-                form.Show();
+                form.Show(this.Owner);
             }
             this.Close();
         }

@@ -47,7 +47,7 @@ namespace CodeRecoder
 
             string totalPath = System.Environment.CurrentDirectory + "\\FileItem\\"+ textBox2.Text.Trim();
             //建立文件夹
-            if (Directory.Exists("totalPath") ==false)
+            if (Directory.Exists(totalPath) ==false)
             {
                 Directory.CreateDirectory(totalPath); 
             }

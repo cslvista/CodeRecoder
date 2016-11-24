@@ -50,6 +50,8 @@
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.代码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.知识点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -65,8 +67,6 @@
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.代码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.知识点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -125,7 +125,7 @@
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(287, 15);
+            this.simpleButton1.Location = new System.Drawing.Point(280, 15);
             this.simpleButton1.Margin = new System.Windows.Forms.Padding(2);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(53, 24);
@@ -142,7 +142,7 @@
             "代码",
             "知识点",
             "全部"});
-            this.comboBox1.Location = new System.Drawing.Point(25, 14);
+            this.comboBox1.Location = new System.Drawing.Point(18, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(64, 25);
             this.comboBox1.TabIndex = 6;
@@ -151,7 +151,7 @@
             // searchControl1
             // 
             this.searchControl1.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
-            this.searchControl1.Location = new System.Drawing.Point(354, 15);
+            this.searchControl1.Location = new System.Drawing.Point(347, 15);
             this.searchControl1.Margin = new System.Windows.Forms.Padding(2);
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -161,7 +161,7 @@
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.searchControl1.Properties.FindDelay = 100;
             this.searchControl1.Properties.NullValuePrompt = "E";
-            this.searchControl1.Size = new System.Drawing.Size(183, 24);
+            this.searchControl1.Size = new System.Drawing.Size(155, 24);
             this.searchControl1.TabIndex = 5;
             this.searchControl1.TextChanged += new System.EventHandler(this.searchControl1_TextChanged);
             // 
@@ -170,7 +170,7 @@
             this.ButtonAdd.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonAdd.Appearance.Options.UseFont = true;
             this.ButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAdd.Image")));
-            this.ButtonAdd.Location = new System.Drawing.Point(106, 15);
+            this.ButtonAdd.Location = new System.Drawing.Point(99, 15);
             this.ButtonAdd.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(53, 24);
@@ -183,7 +183,7 @@
             this.ButtonDelete.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonDelete.Appearance.Options.UseFont = true;
             this.ButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.Image")));
-            this.ButtonDelete.Location = new System.Drawing.Point(226, 15);
+            this.ButtonDelete.Location = new System.Drawing.Point(219, 15);
             this.ButtonDelete.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(53, 24);
@@ -196,7 +196,7 @@
             this.ButtonAlter.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonAlter.Appearance.Options.UseFont = true;
             this.ButtonAlter.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAlter.Image")));
-            this.ButtonAlter.Location = new System.Drawing.Point(166, 15);
+            this.ButtonAlter.Location = new System.Drawing.Point(159, 15);
             this.ButtonAlter.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAlter.Name = "ButtonAlter";
             this.ButtonAlter.Size = new System.Drawing.Size(53, 24);
@@ -277,6 +277,8 @@
             this.gridView1.OptionsFind.FindNullPrompt = "";
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.编号, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // 编号
             // 
@@ -323,7 +325,7 @@
             this.toolStripSeparator1,
             this.修改组名toolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 120);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(137, 98);
             // 
             // 新增ToolStripMenuItem
             // 
@@ -331,37 +333,54 @@
             this.代码ToolStripMenuItem,
             this.知识点ToolStripMenuItem});
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.新增ToolStripMenuItem.Text = "新增（项）";
             this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
+            // 
+            // 代码ToolStripMenuItem
+            // 
+            this.代码ToolStripMenuItem.Name = "代码ToolStripMenuItem";
+            this.代码ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.代码ToolStripMenuItem.Text = "代码";
+            this.代码ToolStripMenuItem.Click += new System.EventHandler(this.代码ToolStripMenuItem_Click);
+            // 
+            // 知识点ToolStripMenuItem
+            // 
+            this.知识点ToolStripMenuItem.Name = "知识点ToolStripMenuItem";
+            this.知识点ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.知识点ToolStripMenuItem.Text = "知识点";
+            this.知识点ToolStripMenuItem.Click += new System.EventHandler(this.知识点ToolStripMenuItem_Click);
             // 
             // 修改ToolStripMenuItem
             // 
             this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.修改ToolStripMenuItem.Text = "修改";
             this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // 修改组名toolStripMenuItem
             // 
             this.修改组名toolStripMenuItem.Name = "修改组名toolStripMenuItem";
-            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.修改组名toolStripMenuItem.Text = "修改组名";
+            this.修改组名toolStripMenuItem.Click += new System.EventHandler(this.修改组名toolStripMenuItem_Click);
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.FooterPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.FooterPanel.Options.UseFont = true;
             this.gridView2.Appearance.GroupRow.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.GroupRow.Options.UseFont = true;
             this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -384,6 +403,8 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.组名, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView2.CustomDrawGroupRow += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gridView2_CustomDrawGroupRow);
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             this.gridView2.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView2_CustomColumnDisplayText);
             // 
             // 组号
@@ -391,17 +412,13 @@
             this.组号.Caption = "组号";
             this.组号.FieldName = "GroupID";
             this.组号.Name = "组号";
-            this.组号.Visible = true;
-            this.组号.VisibleIndex = 0;
-            this.组号.Width = 80;
+            this.组号.Width = 70;
             // 
             // 组名
             // 
             this.组名.Caption = "组名";
             this.组名.FieldName = "GroupName";
             this.组名.Name = "组名";
-            this.组名.Visible = true;
-            this.组名.VisibleIndex = 0;
             // 
             // 项目编号
             // 
@@ -409,8 +426,8 @@
             this.项目编号.FieldName = "ItemID";
             this.项目编号.Name = "项目编号";
             this.项目编号.Visible = true;
-            this.项目编号.VisibleIndex = 1;
-            this.项目编号.Width = 90;
+            this.项目编号.VisibleIndex = 0;
+            this.项目编号.Width = 79;
             // 
             // 标题
             // 
@@ -418,8 +435,8 @@
             this.标题.FieldName = "ItemName";
             this.标题.Name = "标题";
             this.标题.Visible = true;
-            this.标题.VisibleIndex = 3;
-            this.标题.Width = 274;
+            this.标题.VisibleIndex = 2;
+            this.标题.Width = 233;
             // 
             // 日期
             // 
@@ -427,16 +444,19 @@
             this.日期.FieldName = "Time";
             this.日期.Name = "日期";
             this.日期.Visible = true;
-            this.日期.VisibleIndex = 4;
-            this.日期.Width = 140;
+            this.日期.VisibleIndex = 3;
+            this.日期.Width = 123;
             // 
             // 类型
             // 
             this.类型.Caption = "类型";
             this.类型.FieldName = "ItemType";
             this.类型.Name = "类型";
+            this.类型.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ItemType", "总计：{0} ")});
             this.类型.Visible = true;
-            this.类型.VisibleIndex = 2;
+            this.类型.VisibleIndex = 1;
+            this.类型.Width = 79;
             // 
             // panelControl2
             // 
@@ -484,20 +504,6 @@
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 18);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
-            // 
-            // 代码ToolStripMenuItem
-            // 
-            this.代码ToolStripMenuItem.Name = "代码ToolStripMenuItem";
-            this.代码ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.代码ToolStripMenuItem.Text = "代码";
-            this.代码ToolStripMenuItem.Click += new System.EventHandler(this.代码ToolStripMenuItem_Click);
-            // 
-            // 知识点ToolStripMenuItem
-            // 
-            this.知识点ToolStripMenuItem.Name = "知识点ToolStripMenuItem";
-            this.知识点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.知识点ToolStripMenuItem.Text = "知识点";
-            this.知识点ToolStripMenuItem.Click += new System.EventHandler(this.知识点ToolStripMenuItem_Click);
             // 
             // main
             // 

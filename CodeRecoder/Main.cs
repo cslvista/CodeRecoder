@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+
 
 namespace CodeRecoder
 {
@@ -61,7 +63,7 @@ namespace CodeRecoder
                 Choose form = new Choose();
                 form.ID = SelectID.ToString();
                 form.Category = SelectCategory.ToString();
-                form.Show();
+                form.Show(this);
             }
 
         }
@@ -133,7 +135,7 @@ namespace CodeRecoder
             searchControl1.Properties.NullValuePrompt = " ";
             searchControl2.Properties.NullValuePrompt = " ";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
-            comboBox1.Text ="知识点";
+            comboBox1.Text ="全部";
 
             Category.Columns.Add("ID", typeof(string));
             Category.Columns.Add("Category", typeof(string));
@@ -221,15 +223,23 @@ namespace CodeRecoder
         {
             try
             {
-                DelItem form = new DelItem();
-                form.ID = SelectID.ToString();
-                form.Category = SelectCategory.ToString();
-                form.GroupID = SelectGroupID.ToString();
-                form.GroupName = SelectGroupName.ToString();
-                form.ItemID = SelectItemID.ToString();
-                form.ItemName = SelectItemName.ToString();
-                form.ItemType = SelectItemType.ToString();
-                form.Show(this);
+                if (SelectItemID.ToString() == "")
+                {
+                    return;
+                }
+                else
+                {
+                    DelItem form = new DelItem();
+                    form.ID = SelectID.ToString();
+                    form.Category = SelectCategory.ToString();
+                    form.GroupID = SelectGroupID.ToString();
+                    form.GroupName = SelectGroupName.ToString();
+                    form.ItemID = SelectItemID.ToString();
+                    form.ItemName = SelectItemName.ToString();
+                    form.ItemType = SelectItemType.ToString();
+                    form.Show(this);
+                }
+                
             }
             catch
             {
@@ -351,6 +361,8 @@ namespace CodeRecoder
         private void simpleButton1_Click_2(object sender, EventArgs e)
         {
             SearchItem();
+            //test form = new test();
+            //form.Show();
         }
 
         private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,6 +407,36 @@ namespace CodeRecoder
                 form.GroupName = SelectGroupName.ToString();
                 form.addNewGroup = true;
                 form.Show(this);
+        }
+
+        private void 修改组名toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlterGroupName form = new AlterGroupName();
+            form.ID = SelectID.ToString();
+            form.GroupID = SelectGroupID.ToString();
+            form.GroupName = SelectGroupName.ToString();
+            form.Show(this);
+        }
+
+        private void gridView2_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.Column.FieldName == "ItemType")
+            {
+                string ItemType = gridView2.GetRowCellDisplayText(e.RowHandle, gridView2.Columns["ItemType"]);
+
+                if (ItemType == "代码")
+                {
+                    e.Appearance.ForeColor = Color.Blue;
+                }
+            }
+        }
+
+        private void gridView2_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            GridGroupRowInfo GridGroupRowInfo = e.Info as GridGroupRowInfo;
+            int index = gridView2.GetDataRowHandleByGroupRowHandle(e.RowHandle);
+            GridGroupRowInfo.GroupText = "组名："+gridView2.GetRowCellValue(index, "GroupName").ToString()
+                +"     "+ "组号：" + gridView2.GetRowCellValue(index, "GroupID").ToString();
         }
     }
 }

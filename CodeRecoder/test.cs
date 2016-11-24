@@ -20,7 +20,7 @@ namespace CodeRecoder
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=G:/陈淞霖/CodeRecoder/CodeRecoder/Database/CodeRecoder.db");
+            SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
             string sql = "select * from Category";
             SQLiteCommand comm= new SQLiteCommand(sql, conn);
             conn.Open();
@@ -43,7 +43,7 @@ namespace CodeRecoder
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=G:/陈淞霖/CodeRecoder/CodeRecoder/Database/CodeRecoder.db");
+            SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
             string sql = string.Format("insert into Category (id,category) values('{0}','{1}')",textBox1.Text,textBox2.Text);
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
             conn.Open();
