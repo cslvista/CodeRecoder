@@ -36,15 +36,30 @@ namespace CodeRecoder
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            if (SelectID.ToString() == "")
+            {
+                return;
+            }
+
             if (comboBox1.Text == "代码")
             {
                 FileItem form = new FileItem();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
                 form.Show(this);
             }
             else if(comboBox1.Text == "知识点")
             {
                 KnowledgeItem form = new KnowledgeItem();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
                 form.Show(this);
+            }else if (comboBox1.Text == "全部")
+            {
+                Choose form = new Choose();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
+                form.Show();
             }
 
         }
@@ -72,14 +87,15 @@ namespace CodeRecoder
 
         public void SearchItem()
         {
+            Item.Clear();
             string sql = "";
             if (comboBox1.Text == "代码")
             {
-                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='0'", SelectID.ToString());
+                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='1'", SelectID.ToString());
             }
             else if (comboBox1.Text == "知识点")
             {
-                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='1'", SelectID.ToString());
+                sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='0'", SelectID.ToString());
             }
             else if (comboBox1.Text == "全部")
             {
@@ -115,7 +131,7 @@ namespace CodeRecoder
             searchControl1.Properties.NullValuePrompt = " ";
             searchControl2.Properties.NullValuePrompt = " ";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
-            comboBox1.Text =null;
+            comboBox1.Text ="知识点";
 
             Category.Columns.Add("ID", typeof(string));
             Category.Columns.Add("Category", typeof(string));
@@ -164,6 +180,7 @@ namespace CodeRecoder
                     form.GroupName = SelectGroupName.ToString();
                     form.ItemID = SelectItemID.ToString();
                     form.ItemName = SelectItemName.ToString();
+                    
                     form.Show(this);
                 }else if (SelectItemType.ToString() == "0")
                 {
@@ -173,6 +190,7 @@ namespace CodeRecoder
                     form.GroupName = SelectGroupName.ToString();
                     form.ItemID = SelectItemID.ToString();
                     form.ItemName = SelectItemName.ToString();
+                    form.Category = SelectCategory.ToString();
                     form.alter = true;
                     form.Show(this);
                 }
@@ -198,8 +216,23 @@ namespace CodeRecoder
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            DelItem form = new DelItem();
-            form.Show(this);
+            try
+            {
+                DelItem form = new DelItem();
+                form.ID = SelectID.ToString();
+                form.Category = SelectCategory.ToString();
+                form.GroupID = SelectGroupID.ToString();
+                form.GroupName = SelectGroupName.ToString();
+                form.ItemID = SelectItemID.ToString();
+                form.ItemName = SelectItemName.ToString();
+                form.ItemType = SelectItemType.ToString();
+                form.Show(this);
+            }
+            catch
+            {
+
+            }
+            
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
@@ -217,11 +250,11 @@ namespace CodeRecoder
             SelectItemType.Length = 0;
             try
             {
-                SelectGroupID.Append(gridView1.GetFocusedRowCellValue("GroupID").ToString());
-                SelectGroupName.Append(gridView1.GetFocusedRowCellValue("GroupName").ToString());
-                SelectItemID.Append(gridView1.GetFocusedRowCellValue("ItemID").ToString());
-                SelectItemName.Append(gridView1.GetFocusedRowCellValue("ItemName").ToString());
-                SelectItemType.Append(gridView1.GetFocusedRowCellValue("ItemType").ToString());
+                SelectGroupID.Append(gridView2.GetFocusedRowCellValue("GroupID").ToString());
+                SelectGroupName.Append(gridView2.GetFocusedRowCellValue("GroupName").ToString());
+                SelectItemID.Append(gridView2.GetFocusedRowCellValue("ItemID").ToString());
+                SelectItemName.Append(gridView2.GetFocusedRowCellValue("ItemName").ToString());
+                SelectItemType.Append(gridView2.GetFocusedRowCellValue("ItemType").ToString());
             }
             catch
             {
@@ -300,6 +333,16 @@ namespace CodeRecoder
         private void simpleButton1_Click_2(object sender, EventArgs e)
         {
             SearchItem();
+        }
+
+        private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonAlter_Click(null, null);
+        }
+
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonDelete_Click(null, null);
         }
     }
 }

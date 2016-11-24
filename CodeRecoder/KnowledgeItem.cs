@@ -16,11 +16,13 @@ namespace CodeRecoder
         SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
 
         public string ID = "";
+        public string Category = "";
         public string GroupID = "";
         public string GroupName= "";
         public string ItemID = "";      
         public string ItemName = "";
         public bool alter = false;
+        public bool addNew = false;
         public bool addNewGroup = false;
         public KnowledgeItem()
         {
@@ -34,7 +36,26 @@ namespace CodeRecoder
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString());
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+            {
+                MessageBox.Show("组名、标题和内容不得为空！");
+                return;
+            }
+
+
+            string sql = "";
+
+            if (addNew == true)
+            {
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+            }else if (addNewGroup == true)                
+            {
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+            }else if (alter == true)
+            {
+                sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}')", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+            }
+
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
             try
             {
@@ -49,6 +70,8 @@ namespace CodeRecoder
                 return;
             }
 
+
+            //写回主界面
             main form = (main)this.Owner;
             form.SearchItem();
             this.Close();
@@ -56,13 +79,15 @@ namespace CodeRecoder
 
         private void KnowledgeItem_Load(object sender, EventArgs e)
         {
+            this.Text = "知识点 " + string.Format("({0})",Category);
+
             if (alter == true)
             {
                 textBox1.Text = GroupName;
                 textBox1.ReadOnly = true;
                 textBox3.Text = ItemName;
 
-                string sql =string.Format("select ItemSolution from Item where ID='{0}' and GroupID='{1}' and ItemID='{2}'");
+                string sql =string.Format("select ItemSolution from Item where ID='{0}' and GroupID='{1}' and ItemID='{2}'",ID,GroupID,ItemID);
                 try
                 {
                     conn.Open();

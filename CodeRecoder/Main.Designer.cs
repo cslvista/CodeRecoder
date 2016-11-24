@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
             this.ButtonAdd = new DevExpress.XtraEditors.SimpleButton();
@@ -64,7 +65,6 @@
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -117,6 +117,19 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(602, 52);
             this.panelControl1.TabIndex = 4;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(287, 15);
+            this.simpleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(53, 24);
+            this.simpleButton1.TabIndex = 7;
+            this.simpleButton1.Text = "刷新";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_2);
             // 
             // comboBox1
             // 
@@ -308,36 +321,38 @@
             this.toolStripSeparator1,
             this.修改组名toolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 98);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 120);
             // 
             // 新增ToolStripMenuItem
             // 
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.新增ToolStripMenuItem.Text = "新增";
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新增ToolStripMenuItem.Text = "新增（组）";
             this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
             // 
             // 修改ToolStripMenuItem
             // 
             this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.修改ToolStripMenuItem.Text = "修改";
+            this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.删除ToolStripMenuItem.Text = "删除";
+            this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // 修改组名toolStripMenuItem
             // 
             this.修改组名toolStripMenuItem.Name = "修改组名toolStripMenuItem";
-            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.修改组名toolStripMenuItem.Text = "修改组名";
             // 
             // gridView2
@@ -397,7 +412,7 @@
             this.标题.FieldName = "ItemName";
             this.标题.Name = "标题";
             this.标题.Visible = true;
-            this.标题.VisibleIndex = 2;
+            this.标题.VisibleIndex = 3;
             this.标题.Width = 274;
             // 
             // 日期
@@ -406,7 +421,7 @@
             this.日期.FieldName = "Time";
             this.日期.Name = "日期";
             this.日期.Visible = true;
-            this.日期.VisibleIndex = 3;
+            this.日期.VisibleIndex = 4;
             this.日期.Width = 140;
             // 
             // 类型
@@ -414,6 +429,8 @@
             this.类型.Caption = "类型";
             this.类型.FieldName = "ItemType";
             this.类型.Name = "类型";
+            this.类型.Visible = true;
+            this.类型.VisibleIndex = 2;
             // 
             // panelControl2
             // 
@@ -461,19 +478,6 @@
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 18);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(287, 15);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(53, 24);
-            this.simpleButton1.TabIndex = 7;
-            this.simpleButton1.Text = "刷新";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_2);
             // 
             // main
             // 

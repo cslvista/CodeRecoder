@@ -31,6 +31,12 @@ namespace CodeRecoder
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                MessageBox.Show("编号和名称不得为空！");
+                return;
+            }
+
             string sql = "";
 
             if (checkBox1.Checked == true)
