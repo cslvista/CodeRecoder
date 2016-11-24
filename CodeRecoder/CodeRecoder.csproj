@@ -96,6 +96,7 @@
     <Compile Include="AlterGroupName.Designer.cs">
       <DependentUpon>AlterGroupName.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataPath.cs" />
     <Compile Include="DelItem.cs">
       <SubType>Form</SubType>
     </Compile>

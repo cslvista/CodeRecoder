@@ -18,7 +18,7 @@ namespace CodeRecoder
         public DataTable Category = new DataTable();
         public DataTable Item = new DataTable();
 
-        SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+        SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
         SQLiteDataAdapter DataAdapter = null;
 
         public StringBuilder SelectID = new StringBuilder();

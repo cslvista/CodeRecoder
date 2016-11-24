@@ -17,7 +17,7 @@ namespace CodeRecoder
         public string ID="";
         public string Category = "";
 
-        SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+        SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
         public AlterCategory()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace CodeRecoder
                 return;
             }
             //文件操作
-            string totalPath = System.Environment.CurrentDirectory + "\\FileItem\\" + Category;
+            string totalPath = DataPath.FilePath + Category;
             try
             {
                 if (checkBox1.Checked == true)
@@ -81,7 +81,7 @@ namespace CodeRecoder
                 else
                 {
                     string midPath = System.Environment.CurrentDirectory + textBox2.Text;
-                    string newPath = System.Environment.CurrentDirectory + "\\FileItem\\" + textBox2.Text;
+                    string newPath = DataPath.FilePath + textBox2.Text;
                     Directory.Move(totalPath, midPath);
                     Directory.Move(midPath, newPath);
                 }

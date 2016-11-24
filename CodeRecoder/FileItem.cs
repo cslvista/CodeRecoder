@@ -14,7 +14,7 @@ namespace CodeRecoder
 {
     public partial class FileItem : Form
     {
-        SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+        SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
 
         public string ID = "";
         public string Category = "";
@@ -39,7 +39,7 @@ namespace CodeRecoder
             if (alter == true)//则获取答案
             {
                 textBox1.ReadOnly = true;
-                string TotalPath = System.Environment.CurrentDirectory + "//FileItem//" + string.Format("{0}//{1}//{2}.rtf", Category, GroupID, ItemID);
+                string TotalPath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
                 try
                 {
                     richTextBox1.LoadFile(TotalPath);
@@ -128,8 +128,8 @@ namespace CodeRecoder
                 return;
             }
             //保存到磁盘
-            string TotalPath= System.Environment.CurrentDirectory + "//FileItem//" + string.Format("{0}//{1}", Category, GroupID);
-            string FilePath = System.Environment.CurrentDirectory + "//FileItem//" + string.Format("{0}//{1}//{2}.rtf", Category, GroupID, ItemID);
+            string TotalPath= DataPath.FilePath + string.Format("{0}\\{1}", Category, GroupID);
+            string FilePath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
 
             if (Directory.Exists(TotalPath) == false)
             {

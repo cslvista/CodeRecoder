@@ -27,7 +27,7 @@ namespace CodeRecoder
                 return;
             }
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source="+ System.Environment.CurrentDirectory+"/Database/CodeRecoder.db");
+            SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
 
             string sql =string.Format( "insert into Category (ID,Category) values ('{0}','{1}')",textBox1.Text.Trim(),textBox2.Text.Trim());
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
@@ -45,7 +45,7 @@ namespace CodeRecoder
                 return;
             }
 
-            string totalPath = System.Environment.CurrentDirectory + "\\FileItem\\"+ textBox2.Text.Trim();
+            string totalPath = DataPath.FilePath + textBox2.Text.Trim();
             //建立文件夹
             if (Directory.Exists(totalPath) ==false)
             {

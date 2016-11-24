@@ -29,7 +29,7 @@ namespace CodeRecoder
                 return;
             }
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+            SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
             string sql = string.Format("update Item set GroupName='{0}' where ID='{1}' and GroupId='{2}'", textBox2.Text.Trim(),ID,GroupID);
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
 

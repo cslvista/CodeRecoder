@@ -175,7 +175,7 @@
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(53, 24);
             this.ButtonAdd.TabIndex = 1;
-            this.ButtonAdd.Text = "新增";
+            this.ButtonAdd.Text = "新组";
             this.ButtonAdd.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // ButtonDelete

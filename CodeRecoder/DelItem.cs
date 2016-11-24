@@ -22,7 +22,7 @@ namespace CodeRecoder
         public string ItemID = "";
         public string ItemName = "";
 
-        SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+        SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
         public DelItem()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace CodeRecoder
             //删除文件
             if (ItemType == "1")
             {
-                string TotalPath = System.Environment.CurrentDirectory+"//FileItem//"+string.Format("{0}//{1}//{2}.rtf",Category,GroupID,ItemID);
+                string TotalPath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf",Category,GroupID,ItemID);
 
                 try
                 {

@@ -56,7 +56,7 @@ namespace CodeRecoder
                 sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}'", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"),ID,GroupID,ItemID);
             }
 
-            using (SQLiteConnection conn1 = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db"))
+            using (SQLiteConnection conn1 = new SQLiteConnection(DataPath.DBPath))
             {
                 using (SQLiteCommand comm = new SQLiteCommand(sql, conn1))
                 {
@@ -83,7 +83,7 @@ namespace CodeRecoder
 
         private void KnowledgeItem_Load(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=" + System.Environment.CurrentDirectory + "/Database/CodeRecoder.db");
+            SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
 
             this.Text = "知识点 " + string.Format("({0})",Category);
 
