@@ -43,7 +43,7 @@
             this.radioButton1.Size = new System.Drawing.Size(66, 23);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "知识点";
+            this.radioButton1.Text = "数据库";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -55,7 +55,7 @@
             this.radioButton2.Size = new System.Drawing.Size(53, 23);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "代码";
+            this.radioButton2.Text = "文件";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // simpleButton1
@@ -66,7 +66,7 @@
             this.simpleButton1.Location = new System.Drawing.Point(44, 97);
             this.simpleButton1.Margin = new System.Windows.Forms.Padding(2);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(64, 26);
+            this.simpleButton1.Size = new System.Drawing.Size(61, 26);
             this.simpleButton1.TabIndex = 10;
             this.simpleButton1.Text = "确定";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -83,7 +83,7 @@
             this.MaximizeBox = false;
             this.Name = "Choose";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "选择";
+            this.Text = "新增";
             this.Load += new System.EventHandler(this.Choose_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

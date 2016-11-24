@@ -62,7 +62,7 @@
             this.项目编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.标题 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.日期 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.类型 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.来源 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -163,6 +163,7 @@
             this.searchControl1.Properties.NullValuePrompt = "E";
             this.searchControl1.Size = new System.Drawing.Size(155, 24);
             this.searchControl1.TabIndex = 5;
+            this.searchControl1.SelectedIndexChanged += new System.EventHandler(this.searchControl1_SelectedIndexChanged);
             this.searchControl1.TextChanged += new System.EventHandler(this.searchControl1_TextChanged);
             // 
             // ButtonAdd
@@ -393,7 +394,7 @@
             this.项目编号,
             this.标题,
             this.日期,
-            this.类型});
+            this.来源});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.GroupCount = 1;
             this.gridView2.Name = "gridView2";
@@ -447,16 +448,16 @@
             this.日期.VisibleIndex = 3;
             this.日期.Width = 123;
             // 
-            // 类型
+            // 来源
             // 
-            this.类型.Caption = "类型";
-            this.类型.FieldName = "ItemType";
-            this.类型.Name = "类型";
-            this.类型.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.来源.Caption = "来源";
+            this.来源.FieldName = "ItemType";
+            this.来源.Name = "来源";
+            this.来源.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ItemType", "总计：{0} ")});
-            this.类型.Visible = true;
-            this.类型.VisibleIndex = 1;
-            this.类型.Width = 79;
+            this.来源.Visible = true;
+            this.来源.VisibleIndex = 1;
+            this.来源.Width = 79;
             // 
             // panelControl2
             // 
@@ -570,7 +571,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn 组号;
         private DevExpress.XtraGrid.Columns.GridColumn 项目编号;
         private System.Windows.Forms.ComboBox comboBox1;
-        private DevExpress.XtraGrid.Columns.GridColumn 类型;
+        private DevExpress.XtraGrid.Columns.GridColumn 来源;
         private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.ToolStripMenuItem 代码ToolStripMenuItem;

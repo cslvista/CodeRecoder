@@ -282,7 +282,7 @@ namespace CodeRecoder
 
         private void searchControl1_TextChanged(object sender, EventArgs e)
         {
-            Item.DefaultView.RowFilter = string.Format("ItemName like '{0}%'", searchControl1.Text);
+            Item.DefaultView.RowFilter = string.Format("ItemName like '%{0}%' or GroupName like '%{0}%'", searchControl1.Text);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -381,8 +381,8 @@ namespace CodeRecoder
             {
                 switch (e.Value.ToString())
                 {
-                    case "0": e.DisplayText = "知识点"; break;
-                    case "1": e.DisplayText = "代码"; break;
+                    case "0": e.DisplayText = "数据库"; break;
+                    case "1": e.DisplayText = "文件"; break;
                 }
             }
         }
@@ -424,7 +424,7 @@ namespace CodeRecoder
             {
                 string ItemType = gridView2.GetRowCellDisplayText(e.RowHandle, gridView2.Columns["ItemType"]);
 
-                if (ItemType == "代码")
+                if (ItemType == "文件")
                 {
                     e.Appearance.ForeColor = Color.Blue;
                 }
@@ -437,6 +437,11 @@ namespace CodeRecoder
             int index = gridView2.GetDataRowHandleByGroupRowHandle(e.RowHandle);
             GridGroupRowInfo.GroupText = "组名："+gridView2.GetRowCellValue(index, "GroupName").ToString()
                 +"     "+ "组号：" + gridView2.GetRowCellValue(index, "GroupID").ToString();
+        }
+
+        private void searchControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

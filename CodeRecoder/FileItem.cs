@@ -187,7 +187,7 @@ namespace CodeRecoder
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            string TotalPath = System.Environment.CurrentDirectory + "//FileItem//" + string.Format("{0}//{1}//{2}.rtf", Category, GroupID, ItemID);
+            string TotalPath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
             try
             {
                 richTextBox1.LoadFile(TotalPath);
