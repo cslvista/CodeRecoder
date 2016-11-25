@@ -43,7 +43,7 @@ namespace CodeRecoder
                 return;
             }
 
-            if (comboBox1.Text == "代码")
+            if (comboBox1.Text == "数据库")
             {
                 FileItem form = new FileItem();
                 form.ID = SelectID.ToString();
@@ -51,7 +51,7 @@ namespace CodeRecoder
                 form.addNew = true;
                 form.Show(this);
             }
-            else if(comboBox1.Text == "知识点")
+            else if(comboBox1.Text == "文件")
             {
                 KnowledgeItem form = new KnowledgeItem();
                 form.ID = SelectID.ToString();
@@ -93,11 +93,11 @@ namespace CodeRecoder
         {
             Item.Clear();
             string sql = "";
-            if (comboBox1.Text == "代码")
+            if (comboBox1.Text == "文件")
             {
                 sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='1'", SelectID.ToString());
             }
-            else if (comboBox1.Text == "知识点")
+            else if (comboBox1.Text == "数据库")
             {
                 sql = string.Format("select ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time from Item where ID='{0}' and ItemType='0'", SelectID.ToString());
             }
@@ -132,6 +132,7 @@ namespace CodeRecoder
 
         private void main_Load(object sender, EventArgs e)
         {
+            label1.Visible = false;//用于测量gridview2 中组名的长度
             searchControl1.Properties.NullValuePrompt = " ";
             searchControl2.Properties.NullValuePrompt = " ";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
@@ -435,8 +436,25 @@ namespace CodeRecoder
         {
             GridGroupRowInfo GridGroupRowInfo = e.Info as GridGroupRowInfo;
             int index = gridView2.GetDataRowHandleByGroupRowHandle(e.RowHandle);
+
+            //string text = "组名：" + gridView2.GetRowCellValue(index, "GroupName").ToString();
+
+            //label1.Text = text;
+            //int length1 = label1.Width;            
+            //label1.Text = "你";
+            //int lengthspace = label1.Width;
+
+            //int length = System.Convert.ToInt32((160 - length1) / lengthspace);
+
+            //StringBuilder space = new StringBuilder();
+
+            //for (int i = 1; i <= length; i++)
+            //{
+            //    space.Append(" ");
+            //}
+
             GridGroupRowInfo.GroupText = "组名："+gridView2.GetRowCellValue(index, "GroupName").ToString()
-                +"     "+ "组号：" + gridView2.GetRowCellValue(index, "GroupID").ToString();
+                + "     "+ "组号：" + gridView2.GetRowCellValue(index, "GroupID").ToString();
         }
 
         private void searchControl1_SelectedIndexChanged(object sender, EventArgs e)

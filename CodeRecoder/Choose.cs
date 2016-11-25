@@ -42,7 +42,7 @@ namespace CodeRecoder
 
         private void Choose_Load(object sender, EventArgs e)
         {
-
+            radioButton2.Checked = true;
         }
     }
 }

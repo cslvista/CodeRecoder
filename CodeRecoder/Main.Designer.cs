@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
@@ -107,6 +108,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.comboBox1);
             this.panelControl1.Controls.Add(this.searchControl1);
@@ -119,6 +121,14 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(602, 52);
             this.panelControl1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(536, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 14);
+            this.label1.TabIndex = 8;
             // 
             // simpleButton1
             // 
@@ -139,8 +149,8 @@
             this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "代码",
-            "知识点",
+            "数据库",
+            "文件",
             "全部"});
             this.comboBox1.Location = new System.Drawing.Point(18, 14);
             this.comboBox1.Name = "comboBox1";
@@ -342,14 +352,14 @@
             // 
             this.代码ToolStripMenuItem.Name = "代码ToolStripMenuItem";
             this.代码ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.代码ToolStripMenuItem.Text = "代码";
+            this.代码ToolStripMenuItem.Text = "文件";
             this.代码ToolStripMenuItem.Click += new System.EventHandler(this.代码ToolStripMenuItem_Click);
             // 
             // 知识点ToolStripMenuItem
             // 
             this.知识点ToolStripMenuItem.Name = "知识点ToolStripMenuItem";
             this.知识点ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.知识点ToolStripMenuItem.Text = "知识点";
+            this.知识点ToolStripMenuItem.Text = "数据库";
             this.知识点ToolStripMenuItem.Click += new System.EventHandler(this.知识点ToolStripMenuItem_Click);
             // 
             // 修改ToolStripMenuItem
@@ -512,6 +522,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 625);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -521,6 +532,7 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -576,6 +588,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.ToolStripMenuItem 代码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 知识点ToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
 

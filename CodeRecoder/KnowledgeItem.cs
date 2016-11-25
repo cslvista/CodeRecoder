@@ -85,7 +85,7 @@ namespace CodeRecoder
         {
             SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
 
-            this.Text = "知识点 " + string.Format("({0})",Category);
+            this.Text = "数据库 " + string.Format("({0})",Category);
 
             if (alter == true)//如果是修改，则获取答案
             {

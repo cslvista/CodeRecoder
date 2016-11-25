@@ -221,9 +221,8 @@ namespace CodeRecoder
 
         private void simpleButton4_Click_1(object sender, EventArgs e)
         {
-            this.richTextBox1.SelectAll();
-            Font font = new Font("微软雅黑",10);
-            this.richTextBox1.SelectionFont = font;
+            myFont form = new myFont();
+            form.Show(this);
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
