@@ -44,7 +44,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.名称 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,6 +54,7 @@
             this.知识点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.修改组名toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -65,6 +65,7 @@
             this.日期 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.来源 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -245,10 +246,9 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新增ToolStripMenuItem1,
-            this.修改ToolStripMenuItem1,
-            this.刷新ToolStripMenuItem});
+            this.修改ToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
             // 
             // 新增ToolStripMenuItem1
             // 
@@ -263,13 +263,6 @@
             this.修改ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.修改ToolStripMenuItem1.Text = "修改";
             this.修改ToolStripMenuItem1.Click += new System.EventHandler(this.修改ToolStripMenuItem1_Click);
-            // 
-            // 刷新ToolStripMenuItem
-            // 
-            this.刷新ToolStripMenuItem.Name = "刷新ToolStripMenuItem";
-            this.刷新ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.刷新ToolStripMenuItem.Text = "刷新";
-            this.刷新ToolStripMenuItem.Click += new System.EventHandler(this.刷新ToolStripMenuItem_Click);
             // 
             // gridView1
             // 
@@ -333,10 +326,11 @@
             this.新增ToolStripMenuItem,
             this.修改ToolStripMenuItem,
             this.删除ToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.toolStripSeparator1,
             this.修改组名toolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(137, 98);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(137, 120);
             // 
             // 新增ToolStripMenuItem
             // 
@@ -351,8 +345,8 @@
             // 代码ToolStripMenuItem
             // 
             this.代码ToolStripMenuItem.Name = "代码ToolStripMenuItem";
-            this.代码ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.代码ToolStripMenuItem.Text = "文件";
+            this.代码ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.代码ToolStripMenuItem.Text = "RTF文件";
             this.代码ToolStripMenuItem.Click += new System.EventHandler(this.代码ToolStripMenuItem_Click);
             // 
             // 知识点ToolStripMenuItem
@@ -365,26 +359,33 @@
             // 修改ToolStripMenuItem
             // 
             this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.修改ToolStripMenuItem.Text = "修改";
             this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "换组";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // 修改组名toolStripMenuItem
             // 
             this.修改组名toolStripMenuItem.Name = "修改组名toolStripMenuItem";
-            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.修改组名toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.修改组名toolStripMenuItem.Text = "修改组名";
             this.修改组名toolStripMenuItem.Click += new System.EventHandler(this.修改组名toolStripMenuItem_Click);
             // 
@@ -471,6 +472,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.simpleButton2);
             this.panelControl2.Controls.Add(this.searchControl2);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(2, 24);
@@ -478,6 +480,19 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(258, 52);
             this.panelControl2.TabIndex = 4;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
+            this.simpleButton2.Location = new System.Drawing.Point(191, 15);
+            this.simpleButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(53, 24);
+            this.simpleButton2.TabIndex = 9;
+            this.simpleButton2.Text = "刷新";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // searchControl2
             // 
@@ -493,7 +508,7 @@
             this.searchControl2.Properties.FindDelay = 100;
             this.searchControl2.Properties.NullValuePrompt = "E";
             this.searchControl2.Properties.NullValuePromptShowForEmptyValue = false;
-            this.searchControl2.Size = new System.Drawing.Size(227, 24);
+            this.searchControl2.Size = new System.Drawing.Size(164, 24);
             this.searchControl2.TabIndex = 6;
             this.searchControl2.TextChanged += new System.EventHandler(this.searchControl2_TextChanged);
             // 
@@ -526,7 +541,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "代码记录";
+            this.Text = "记录";
             this.Load += new System.EventHandler(this.main_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -584,11 +599,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn 项目编号;
         private System.Windows.Forms.ComboBox comboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn 来源;
-        private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.ToolStripMenuItem 代码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 知识点ToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

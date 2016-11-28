@@ -21,6 +21,7 @@ namespace CodeRecoder
         public string ItemType = "";
         public string ItemID = "";
         public string ItemName = "";
+        int labelLength;
 
         SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
         public DelItem()
@@ -90,8 +91,22 @@ namespace CodeRecoder
             {
                 case "0": label3.Text = "类别：" + "知识点"; break;
                 case "1": label3.Text = "类别：" + "代码"; break;
-            }           
+            }
+                       
             label4.Text = "标题：" + ItemName;
+
+            if (label1.Width> label4.Width)
+            {
+                labelLength = label1.Width;
+            }
+            else
+            {
+                labelLength = label4.Width;
+            }
+            
+            groupBox1.Width = labelLength + label4.Location.X * 2;
+            this.Width = groupBox1.Width + groupBox1.Location.X * 2+15;
+            simpleButton1.Location= new Point((this.Width-simpleButton1.Width)/2, simpleButton1.Location.Y);
         }
     }
 }

@@ -390,17 +390,29 @@ namespace CodeRecoder
 
         private void 代码ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                FileItem form = new FileItem();
-                form.ID = SelectID.ToString();
-                form.Category = SelectCategory.ToString();
-                form.GroupID = SelectGroupID.ToString();
-                form.GroupName = SelectGroupName.ToString();
-                form.addNewGroup = true;
-                form.Show(this);                        
+            if (SelectGroupID.ToString() == "")
+            {
+                MessageBox.Show("没有可选的组！");
+                return;
+            }
+
+            FileItem form = new FileItem();
+            form.ID = SelectID.ToString();
+            form.Category = SelectCategory.ToString();
+            form.GroupID = SelectGroupID.ToString();
+            form.GroupName = SelectGroupName.ToString();
+            form.addNewGroup = true;
+            form.Show(this);                        
         }
 
         private void 知识点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (SelectGroupID.ToString() == "")
+            {
+                MessageBox.Show("没有可选的组！");
+                return;
+            }
+
                 KnowledgeItem form = new KnowledgeItem();
                 form.ID = SelectID.ToString();
                 form.Category = SelectCategory.ToString();
@@ -428,6 +440,9 @@ namespace CodeRecoder
                 if (ItemType == "文件")
                 {
                     e.Appearance.ForeColor = Color.Blue;
+                }else
+                {
+                    e.Appearance.ForeColor = Color.Green;
                 }
             }
         }
@@ -460,6 +475,23 @@ namespace CodeRecoder
         private void searchControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SearchCategory();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ChangeGroup form = new ChangeGroup();
+            form.ID = SelectID.ToString();
+            form.Category = SelectCategory.ToString();
+            form.GroupID = SelectGroupID.ToString();
+            form.GroupName = SelectGroupName.ToString();
+            form.ItemID = SelectItemID.ToString();
+            form.ItemName = SelectItemName.ToString();
+            form.Show(this);
         }
     }
 }

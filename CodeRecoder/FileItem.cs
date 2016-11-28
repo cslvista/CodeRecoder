@@ -34,7 +34,7 @@ namespace CodeRecoder
 
         private void Details_Load(object sender, EventArgs e)
         {
-            this.Text = "代码 " +string.Format("({0})", Category);
+            this.Text = "RTF文件 " +string.Format("({0})", Category);
 
             if (alter == true)//则获取答案
             {
