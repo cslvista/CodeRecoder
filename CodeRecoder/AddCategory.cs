@@ -45,12 +45,7 @@ namespace CodeRecoder
                 return;
             }
 
-            string totalPath = DataPath.FilePath + textBox2.Text.Trim();
-            //建立文件夹
-            if (Directory.Exists(totalPath) ==false)
-            {
-                Directory.CreateDirectory(totalPath); 
-            }
+            
 
             //更新主界面
            main form = (main)this.Owner;

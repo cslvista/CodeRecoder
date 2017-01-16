@@ -16,7 +16,7 @@ namespace CodeRecoder
     {
         SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
 
-        public string ID = "";
+        public string CategoryID = "";
         public string Category = "";
         public string GroupID = "";
         public string GroupName = "";
@@ -34,20 +34,31 @@ namespace CodeRecoder
 
         private void Details_Load(object sender, EventArgs e)
         {
-            this.Text = "RTF文件 " +string.Format("({0})", Category);
+            this.Text = Category;
 
             if (alter == true)//则获取答案
             {
-                textBox1.ReadOnly = true;
-                string TotalPath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
+                string sql = string.Format("select ItemSolution from Item where CategoryID='{0}' and GroupID='{1}' and ItemID='{2}'", CategoryID, GroupID, ItemID);
+                conn.Open();
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                SQLiteDataReader reader = comm.ExecuteReader();
                 try
-                {
-                    richTextBox1.LoadFile(TotalPath);
+                {                    
+                    reader.Read();                    
+                    MemoryStream mstream = new MemoryStream(reader[0] as byte[]);
+                    reader.Close();
+                    richTextBox1.LoadFile(mstream, RichTextBoxStreamType.RichText);
+                    mstream.Close();                   
+                    conn.Close();
                 }
                 catch (Exception ex)
                 {
+                    reader.Close();
+                    conn.Close();                    
                     MessageBox.Show(ex.Message);
+                    //return;
                 }
+                textBox1.Enabled = false;
 
             }
             else if (addNewGroup == true) //往组中添加项
@@ -55,7 +66,7 @@ namespace CodeRecoder
                 textBox1.ReadOnly = true;
 
                 //获取项目编号
-                string sql = string.Format("select max(ItemID) from Item where ID='{0}' and GroupID='{1}' ", ID, GroupID);
+                string sql = string.Format("select max(ItemID) from Item where CategoryID='{0}' and GroupID='{1}' ", CategoryID, GroupID);
                 try
                 {
                     conn.Open();
@@ -87,7 +98,7 @@ namespace CodeRecoder
                 ItemID = "1";
 
                 //获取组号
-                string sql = string.Format("select max(GroupID) from Item where ID='{0}' ", ID);
+                string sql = string.Format("select max(GroupID) from Item where CategoryID='{0}' ", CategoryID);
                 try
                 {
                     conn.Open();
@@ -127,43 +138,32 @@ namespace CodeRecoder
                 MessageBox.Show("组名、标题和内容不得为空！");
                 return;
             }
-            //保存到磁盘
-            string TotalPath= DataPath.FilePath + string.Format("{0}\\{1}", Category, GroupID);
-            string FilePath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
 
-            if (Directory.Exists(TotalPath) == false)
-            {
-                Directory.CreateDirectory(TotalPath);
-            }
-
-            try
-            {
-                richTextBox1.SaveFile(FilePath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
             //写数据库
             string sql = "";
             if (addNew == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, textBox1.Text.Trim(), 1, ItemID, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(CategoryID,GroupID,GroupName,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}',@ItemSolution,'{5}')", CategoryID, GroupID, textBox1.Text.Trim(),ItemID, textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }
             else if (addNewGroup == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", ID, GroupID, GroupName, 1, ItemID, textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(CategoryID,GroupID,GroupName,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}',@ItemSolution,'{5}')", CategoryID, GroupID, GroupName,ItemID, textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }
             else if (alter == true)
             {
-                sql = string.Format("update Item set ItemName='{0}',Time='{1}' where ID='{2}' and GroupID='{3}' and ItemID='{4}'", textBox3.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"), ID, GroupID, ItemID);
+                sql = string.Format("update Item set ItemName='{0}',Time='{1}',ItemSolution=@ItemSolution where CategoryID='{2}' and GroupID='{3}' and ItemID='{4}'", textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), CategoryID, GroupID, ItemID);
             }
 
-            SQLiteCommand comm = new SQLiteCommand(sql, conn);
+            MemoryStream mstream = new MemoryStream();
+            richTextBox1.SaveFile(mstream, RichTextBoxStreamType.RichText);
+            byte[] bWrite = mstream.ToArray();
             try
             {
                 conn.Open();
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                comm.Parameters.Add("@ItemSolution", DbType.Binary).Value = bWrite;
                 comm.ExecuteNonQuery();
+                mstream.Close();
                 conn.Close();
             }
             catch (Exception ex)
@@ -187,16 +187,25 @@ namespace CodeRecoder
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            string TotalPath = DataPath.FilePath + string.Format("{0}\\{1}\\{2}.rtf", Category, GroupID, ItemID);
+            string sql = string.Format("select ItemSolution from Item where CategoryID='{0}',GroupID='{0}',ItemID='{0}'",CategoryID,GroupID,ItemID);
             try
             {
-                richTextBox1.LoadFile(TotalPath);
+                conn.Open();
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                SQLiteDataReader reader = comm.ExecuteReader();
+                reader.Read();
+                MemoryStream mstream = new MemoryStream(reader[0] as byte[]);
+                richTextBox1.LoadFile(mstream, RichTextBoxStreamType.RichText);
+                mstream.Close();
+                reader.Close();
+                conn.Close();
             }
             catch (Exception ex)
             {
+                conn.Close();
                 MessageBox.Show(ex.Message);
+                return;
             }
-            
         }
 
         private void 粘贴ToolStripMenuItem_Click(object sender, EventArgs e)

@@ -46,11 +46,11 @@ namespace CodeRecoder
 
             if (addNew == true)
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, textBox1.Text.Trim(), 0, ItemID, textBox3.Text.Trim(), textBox2.Text.Trim(), System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, textBox1.Text.Trim(), 0, ItemID, textBox3.Text.Trim(), textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }
             else if (addNewGroup == true)                
             {
-                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text.Trim(), textBox2.Text.Trim(), System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                sql = string.Format("insert into Item(ID,GroupID,GroupName,ItemType,ItemID,ItemName,ItemSolution,Time) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", ID, GroupID, GroupName, 0, ItemID, textBox3.Text.Trim(), textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
             }else if (alter == true)
             {
                 sql = string.Format("update Item set ItemName='{0}',ItemSolution='{1}',Time='{2}' where ID='{3}' and GroupID='{4}' and ItemID='{5}'", textBox3.Text, textBox2.Text, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"),ID,GroupID,ItemID);

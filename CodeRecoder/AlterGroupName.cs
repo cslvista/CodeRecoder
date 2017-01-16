@@ -30,7 +30,7 @@ namespace CodeRecoder
             }
 
             SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
-            string sql = string.Format("update Item set GroupName='{0}' where ID='{1}' and GroupId='{2}'", textBox2.Text.Trim(),ID,GroupID);
+            string sql = string.Format("update Item set GroupName='{0}' where CategoryID='{1}' and GroupID='{2}'", textBox2.Text.Trim(),ID,GroupID);
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
 
             try

@@ -43,13 +43,13 @@ namespace CodeRecoder
             {
                 sql = string.Format("delete from Category where ID='{0}'", ID)
                     + ";"
-                    + string.Format("delete from Item where ID='{0}'", ID);
+                    + string.Format("delete from Item where CategoryID='{0}'", ID);
             }
             else
             {
                 sql = string.Format("update Category set ID='{0}',Category='{1}' where ID='{2}'", textBox1.Text.Trim(), textBox2.Text.Trim(),ID)
                     + ";"
-                    + string.Format("update Item set ID='{0}' where ID='{1}'", textBox1.Text.Trim(),ID);
+                    + string.Format("update Item set CategoryID='{0}' where CategoryID='{1}'", textBox1.Text.Trim(),ID);
 
             }
 
@@ -66,32 +66,7 @@ namespace CodeRecoder
                 MessageBox.Show(ex.Message);
                 return;
             }
-            //文件操作
-            string totalPath = DataPath.FilePath + Category;
-            try
-            {
-                if (checkBox1.Checked == true)
-                {
-                    if (Directory.Exists(totalPath) == true)
-                    {
-                        Directory.Delete(totalPath, true);
-                    }
-                    
-                }
-                else
-                {
-                    string midPath = System.Environment.CurrentDirectory + textBox2.Text;
-                    string newPath = DataPath.FilePath + textBox2.Text;
-                    Directory.Move(totalPath, midPath);
-                    Directory.Move(midPath, newPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-            
+           
 
             //更新主界面
             main form = (main)this.Owner;
