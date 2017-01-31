@@ -48,7 +48,7 @@ namespace CodeRecoder
             }
           
             //写回主界面
-            main form = (main)this.Owner;
+            MainBody form = (MainBody)this.Owner;
             form.SearchItem();
             this.Close();
 

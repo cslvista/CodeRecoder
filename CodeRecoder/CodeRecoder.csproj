@@ -82,17 +82,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCategory.cs">
+    <Compile Include="Add_Alter_Category.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCategory.Designer.cs">
-      <DependentUpon>AddCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AlterCategory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AlterCategory.Designer.cs">
-      <DependentUpon>AlterCategory.cs</DependentUpon>
+    <Compile Include="Add_Alter_Category.Designer.cs">
+      <DependentUpon>Add_Alter_Category.cs</DependentUpon>
     </Compile>
     <Compile Include="AlterGroupName.cs">
       <SubType>Form</SubType>
@@ -107,11 +101,11 @@
     <Compile Include="DelItem.Designer.cs">
       <DependentUpon>DelItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="main.cs">
+    <Compile Include="MainBody.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
+    <Compile Include="MainBody.Designer.cs">
+      <DependentUpon>MainBody.cs</DependentUpon>
     </Compile>
     <Compile Include="FileItem.cs">
       <SubType>Form</SubType>
@@ -139,11 +133,14 @@
     <Compile Include="ChangeGroup.Designer.cs">
       <DependentUpon>ChangeGroup.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddCategory.resx">
-      <DependentUpon>AddCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AlterCategory.resx">
-      <DependentUpon>AlterCategory.cs</DependentUpon>
+    <Compile Include="Transfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfer.Designer.cs">
+      <DependentUpon>Transfer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Add_Alter_Category.resx">
+      <DependentUpon>Add_Alter_Category.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlterGroupName.resx">
       <DependentUpon>AlterGroupName.cs</DependentUpon>
@@ -154,8 +151,8 @@
     <EmbeddedResource Include="FileItem.resx">
       <DependentUpon>FileItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main.resx">
-      <DependentUpon>main.cs</DependentUpon>
+    <EmbeddedResource Include="MainBody.resx">
+      <DependentUpon>MainBody.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="myFont.resx">
       <DependentUpon>myFont.cs</DependentUpon>
@@ -176,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeGroup.resx">
       <DependentUpon>ChangeGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfer.resx">
+      <DependentUpon>Transfer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

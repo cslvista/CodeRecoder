@@ -13,39 +13,28 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace CodeRecoder
 {
-    public partial class main : Form
+    public partial class MainBody : Form
     {
         public DataTable Category = new DataTable();
         public DataTable Item = new DataTable();
 
         SQLiteConnection conn = new SQLiteConnection(DataPath.DBPath);
         SQLiteDataAdapter DataAdapter = null;
-
-        public StringBuilder SelectID = new StringBuilder();
-        public StringBuilder SelectCategory = new StringBuilder();
-        public StringBuilder SelectGroupID = new StringBuilder();
-        public StringBuilder SelectGroupName = new StringBuilder();
-        public StringBuilder SelectItemID = new StringBuilder();
-        public StringBuilder SelectItemName = new StringBuilder();
-        public StringBuilder SelectItemType = new StringBuilder();
-
-
-
-        public main()
+        public MainBody()
         {
             InitializeComponent();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (SelectID.ToString() == "")
+            if (gridView1.RowCount == 0)
             {
                 return;
             }
 
             FileItem form = new FileItem();
-            form.CategoryID = SelectID.ToString();
-            form.Category = SelectCategory.ToString();
+            form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
+            form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
             form.addNew = true;
             form.Show(this);           
         }
@@ -53,28 +42,17 @@ namespace CodeRecoder
 
         private void gridControl1_Click(object sender, EventArgs e)
         {
-            SelectID.Length = 0;
-            SelectCategory.Length = 0;
-            Item.Clear();
-            //1.获取主表内容
-            try
+            if (Category.Rows.Count > 0)
             {
-                SelectID.Append(gridView1.GetFocusedRowCellValue("ID").ToString());
-                SelectCategory.Append(gridView1.GetFocusedRowCellValue("Category").ToString());
+                SearchItem();
             }
-            catch
-            {
-                return;
-            }
-
-            SearchItem();
-
+            
         }
 
         public void SearchItem()
         {
             Item.Clear();           
-            string sql = string.Format("select CategoryID,GroupID,GroupName,ItemID,ItemName,Time from Item where CategoryID='{0}'", SelectID.ToString());
+            string sql = string.Format("select * from Item where CategoryID='{0}'", gridView1.GetFocusedRowCellValue("ID").ToString());
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
             try
             {
@@ -95,9 +73,8 @@ namespace CodeRecoder
         private void main_Load(object sender, EventArgs e)
         {
             searchControl1.Properties.NullValuePrompt = " ";
-            searchControl2.Properties.NullValuePrompt = " ";
+            searchControl2.Properties.NullValuePrompt = "搜索类别名称";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
-
 
             Category.Columns.Add("ID", typeof(int));
             Category.Columns.Add("Category", typeof(string));
@@ -138,14 +115,14 @@ namespace CodeRecoder
             try
             {
                 FileItem form = new FileItem();
-                form.CategoryID = SelectID.ToString();
-                form.Category = SelectCategory.ToString();
-                form.GroupID = SelectGroupID.ToString();
-                form.GroupName = SelectGroupName.ToString();
-                form.ItemID = SelectItemID.ToString();
-                form.ItemName = SelectItemName.ToString();
+                form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
+                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+                form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
+                form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
+                form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
+                form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
                 form.alter = true;
-                form.Show(this);                               
+                form.Show(this);
             }
             catch { }
             
@@ -153,15 +130,15 @@ namespace CodeRecoder
 
         private void 新增ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AddCategory form = new AddCategory();
+            Add_Alter_Category form = new Add_Alter_Category();
             form.Show(this);
         }
 
         private void 修改ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AlterCategory form = new AlterCategory();
-            form.ID = SelectID.ToString();
-            form.Category = SelectCategory.ToString();
+            Add_Alter_Category form = new Add_Alter_Category();
+            form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
+            form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
             form.Show(this);
         }
 
@@ -169,22 +146,26 @@ namespace CodeRecoder
         {
             try
             {
-                if (SelectItemID.ToString() == "")
+                if (MessageBox.Show(string.Format("是否删除'{0}'？", gridView1.GetFocusedRowCellDisplayText("Category").ToString()), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
                 {
                     return;
                 }
-                else
-                {
-                    DelItem form = new DelItem();
-                    form.ID = SelectID.ToString();
-                    form.Category = SelectCategory.ToString();
-                    form.GroupID = SelectGroupID.ToString();
-                    form.GroupName = SelectGroupName.ToString();
-                    form.ItemID = SelectItemID.ToString();
-                    form.ItemName = SelectItemName.ToString();
-                    form.Show(this);
-                }
-                
+            }
+            catch
+            {
+                return;
+            }
+
+            try
+            {
+                DelItem form = new DelItem();
+                form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
+                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+                form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
+                form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
+                form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
+                form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
+                form.Show(this);
             }
             catch
             {
@@ -201,23 +182,7 @@ namespace CodeRecoder
 
         private void gridControl2_Click(object sender, EventArgs e)
         {
-            SelectGroupID.Length = 0;
-            SelectGroupName.Length = 0;
-            SelectItemID.Length = 0;
-            SelectItemName.Length = 0;
-            SelectItemType.Length = 0;
-            try
-            {
-                SelectGroupID.Append(gridView2.GetFocusedRowCellValue("GroupID").ToString());
-                SelectGroupName.Append(gridView2.GetFocusedRowCellValue("GroupName").ToString());
-                SelectItemID.Append(gridView2.GetFocusedRowCellValue("ItemID").ToString());
-                SelectItemName.Append(gridView2.GetFocusedRowCellValue("ItemName").ToString());
-                SelectItemType.Append(gridView2.GetFocusedRowCellValue("ItemType").ToString());
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void searchControl2_TextChanged(object sender, EventArgs e)
@@ -253,10 +218,10 @@ namespace CodeRecoder
             try
             {
                 FileItem form = new FileItem();
-                form.CategoryID = SelectID.ToString();
-                form.Category = SelectCategory.ToString();
-                form.GroupID = SelectGroupID.ToString();
-                form.GroupName = SelectGroupName.ToString();
+                form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
+                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+                form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
+                form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
                 form.addNewGroup = true;
                 form.Show(this);
             }
@@ -276,16 +241,10 @@ namespace CodeRecoder
             form.Show(this);
         }
 
-        private void gridControl2_MouseUp(object sender, MouseEventArgs e)
-        {
-            gridControl2_Click(null, null);
-        }
 
-        private void simpleButton1_Click_2(object sender, EventArgs e)
+        private void ButtonRefresh_Click(object sender, EventArgs e)
         {
             SearchItem();
-            //test form = new test();
-            //form.Show();
         }
 
         private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -310,38 +269,12 @@ namespace CodeRecoder
             }
         }
 
-        private void 代码ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (SelectGroupID.ToString() == "")
-            {
-                MessageBox.Show("没有可选的组！");
-                return;
-            }
-
-            FileItem form = new FileItem();
-            form.CategoryID = SelectID.ToString();
-            form.Category = SelectCategory.ToString();
-            form.GroupID = SelectGroupID.ToString();
-            form.GroupName = SelectGroupName.ToString();
-            form.addNewGroup = true;
-            form.Show(this);                        
-        }
-
-        private void 知识点ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (SelectGroupID.ToString() == "")
-            {
-                MessageBox.Show("没有可选的组！");
-                return;
-            }
-        }
-
         private void 修改组名toolStripMenuItem_Click(object sender, EventArgs e)
         {
             AlterGroupName form = new AlterGroupName();
-            form.ID = SelectID.ToString();
-            form.GroupID = SelectGroupID.ToString();
-            form.GroupName = SelectGroupName.ToString();
+            form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
+            form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString(); 
+            form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString(); 
             form.Show(this);
         }
 
@@ -399,12 +332,12 @@ namespace CodeRecoder
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ChangeGroup form = new ChangeGroup();
-            form.ID = SelectID.ToString();
-            form.Category = SelectCategory.ToString();
-            form.GroupID = SelectGroupID.ToString();
-            form.GroupName = SelectGroupName.ToString();
-            form.ItemID = SelectItemID.ToString();
-            form.ItemName = SelectItemName.ToString();
+            form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
+            form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+            form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
+            form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
+            form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
+            form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
             form.Show(this);
         }
 
@@ -413,5 +346,85 @@ namespace CodeRecoder
 
         }
 
+        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+        {
+            SearchCategory();
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show(string.Format("是否删除'{0}'？", gridView1.GetFocusedRowCellDisplayText("Category").ToString()), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
+
+            try
+            {
+                string sql = string.Format("delete from Category where ID='{0}';", gridView1.GetFocusedRowCellValue("ID").ToString())
+                           + string.Format("delete from Item where CategoryID='{0}';", gridView1.GetFocusedRowCellValue("ID").ToString())
+                           + " VACUUM";
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                conn.Open();
+                comm.ExecuteNonQuery();               
+                conn.Close();
+                SearchCategory();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误1:" + ex.Message, "提示");
+                return;
+            }
+        }
+
+        private void toolStripButtonAdd_Click(object sender, EventArgs e)
+        {
+            Add_Alter_Category form = new Add_Alter_Category();
+            form.Show(this);
+        }
+
+        private void toolStripButtonAlter_Click(object sender, EventArgs e)
+        {
+            Add_Alter_Category form = new Add_Alter_Category();
+            form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
+            form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+            form.alter = true;
+            form.Show(this);
+        }
+
+        private void 删除ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            toolStripButtonDelete_Click(sender, e);
+        }
+
+        private void 清理数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = "VACUUM";
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                conn.Open();
+                comm.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("清理成功！", "提示");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误1:" + ex.Message, "提示");
+                return;
+            }
+        }
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Transfer form = new Transfer();
+            form.Show();
+        }
     }
 }

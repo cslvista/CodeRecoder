@@ -36,7 +36,7 @@ namespace CodeRecoder
             }
 
             //查找该组名
-            string sql1= string.Format("select GroupName from Item where ID='{0}' and GroupID='{1}' and ItemID='1'", textBox1.Text, textBox2.Text);
+            string sql1= string.Format("select GroupName from Item where CategoryID='{0}' and GroupID='{1}'", textBox1.Text, textBox2.Text);
             SQLiteCommand comm = new SQLiteCommand(sql1, conn);
             try
             {
@@ -63,7 +63,7 @@ namespace CodeRecoder
                 return;
             }
 
-            string sql2 = string.Format("update Item set ID='{0}',GroupID='{1}',ItemID='{2}',GroupName='{3}' where ID='{4}' and GroupID='{5}' and ItemID='{6}' and ItemName='{7}'", textBox1.Text.Trim(), textBox2.Text.Trim(),textBox3.Text.Trim(),newGroupName,ID,GroupID,ItemID,ItemName);
+            string sql2 = string.Format("update Item set CategoryID='{0}',GroupID='{1}',ItemID='{2}',GroupName='{3}' where CategoryID='{4}' and GroupID='{5}' and ItemID='{6}' and ItemName='{7}'", textBox1.Text.Trim(), textBox2.Text.Trim(),textBox3.Text.Trim(),newGroupName,ID,GroupID,ItemID,ItemName);
             SQLiteCommand comm1 = new SQLiteCommand(sql2, conn);
             try
             {
@@ -79,7 +79,7 @@ namespace CodeRecoder
             }
 
             //写回主界面
-            main form = (main)this.Owner;
+            MainBody form = (MainBody)this.Owner;
             form.SearchItem();
             this.Close();
         }

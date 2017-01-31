@@ -47,7 +47,7 @@ namespace CodeRecoder
             }
 
             //更新主界面
-            main form = (main)this.Owner;
+            MainBody form = (MainBody)this.Owner;
             form.SearchItem();
             this.Close();
         }

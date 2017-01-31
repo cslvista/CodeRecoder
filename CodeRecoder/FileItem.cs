@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
+using System.IO.Compression;
 
 namespace CodeRecoder
 {
@@ -45,10 +46,19 @@ namespace CodeRecoder
                 try
                 {                    
                     reader.Read();                    
-                    MemoryStream mstream = new MemoryStream(reader[0] as byte[]);
+                    MemoryStream ms = new MemoryStream(reader[0] as byte[]);
                     reader.Close();
-                    richTextBox1.LoadFile(mstream, RichTextBoxStreamType.RichText);
-                    mstream.Close();                   
+                    GZipStream zip = new GZipStream(ms, CompressionMode.Decompress);
+                    using(MemoryStream ms1 = new MemoryStream())
+                    {
+                        int b = -1;
+                        while ((b = zip.ReadByte()) != -1)
+                        {
+                            ms1.WriteByte((byte)b);
+                        }
+                        ms1.Position = 0;
+                        richTextBox1.LoadFile(ms1, RichTextBoxStreamType.RichText);
+                    }                                          
                     conn.Close();
                 }
                 catch (Exception ex)
@@ -154,16 +164,30 @@ namespace CodeRecoder
                 sql = string.Format("update Item set ItemName='{0}',Time='{1}',ItemSolution=@ItemSolution where CategoryID='{2}' and GroupID='{3}' and ItemID='{4}'", textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), CategoryID, GroupID, ItemID);
             }
 
-            MemoryStream mstream = new MemoryStream();
-            richTextBox1.SaveFile(mstream, RichTextBoxStreamType.RichText);
-            byte[] bWrite = mstream.ToArray();
+            byte[] bWrite = null;
+            byte[] bWrite1 = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                richTextBox1.SaveFile(ms, RichTextBoxStreamType.RichText);
+                bWrite = ms.ToArray();
+            }
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress))
+                {
+                    zip.Write(bWrite, 0, bWrite.Length);
+                }                    
+                bWrite1 = ms.ToArray();
+            }
+                           
             try
             {
                 conn.Open();
                 SQLiteCommand comm = new SQLiteCommand(sql, conn);
-                comm.Parameters.Add("@ItemSolution", DbType.Binary).Value = bWrite;
+                comm.Parameters.Add("@ItemSolution", DbType.Binary).Value = bWrite1;
                 comm.ExecuteNonQuery();
-                mstream.Close();
+                
                 conn.Close();
             }
             catch (Exception ex)
@@ -174,7 +198,7 @@ namespace CodeRecoder
             }
 
             //写回主界面
-            main form = (main)this.Owner;
+            MainBody form = (MainBody)this.Owner;
             form.SearchItem();
             this.Close();
 
@@ -237,6 +261,11 @@ namespace CodeRecoder
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
