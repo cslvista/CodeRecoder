@@ -68,7 +68,6 @@
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.searchControl2 = new DevExpress.XtraEditors.SearchControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清理数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -103,7 +102,7 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1157, 781);
@@ -117,7 +116,7 @@
             this.panelControl1.Controls.Add(this.ButtonDelete);
             this.panelControl1.Controls.Add(this.ButtonAlter);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(333, 30);
+            this.panelControl1.Location = new System.Drawing.Point(333, 34);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(821, 66);
@@ -200,7 +199,7 @@
             this.panel1.Location = new System.Drawing.Point(333, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(821, 24);
+            this.panel1.Size = new System.Drawing.Size(821, 28);
             this.panel1.TabIndex = 3;
             // 
             // gridControl1
@@ -208,11 +207,11 @@
             this.gridControl1.ContextMenuStrip = this.contextMenuStrip1;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gridControl1.Location = new System.Drawing.Point(3, 100);
+            this.gridControl1.Location = new System.Drawing.Point(3, 104);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(324, 679);
+            this.gridControl1.Size = new System.Drawing.Size(324, 675);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -295,11 +294,11 @@
             this.gridControl2.ContextMenuStrip = this.contextMenuStrip2;
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gridControl2.Location = new System.Drawing.Point(333, 100);
+            this.gridControl2.Location = new System.Drawing.Point(333, 104);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(821, 679);
+            this.gridControl2.Size = new System.Drawing.Size(821, 675);
             this.gridControl2.TabIndex = 1;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -432,7 +431,7 @@
             this.panelControl2.Controls.Add(this.toolStrip1);
             this.panelControl2.Controls.Add(this.searchControl2);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(3, 30);
+            this.panelControl2.Location = new System.Drawing.Point(3, 34);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(324, 66);
@@ -512,7 +511,6 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem,
             this.清理数据库ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -520,13 +518,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(330, 28);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ToolStripMenuItem
-            // 
-            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
-            this.ToolStripMenuItem.Text = "转换";
-            this.ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // 清理数据库ToolStripMenuItem
             // 
@@ -604,7 +595,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn 项目编号;
         private DevExpress.XtraEditors.SimpleButton ButtonRefresh;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
         private System.Windows.Forms.ToolStripButton toolStripButtonAlter;

@@ -31,18 +31,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transfer));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonWrite = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonTranfer = new DevExpress.XtraEditors.SimpleButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.类别ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.组号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.组名 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.项目编号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.标题 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.类别ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.内容 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -51,8 +56,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -65,6 +70,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.simpleButton1);
             this.panel1.Controls.Add(this.ButtonWrite);
             this.panel1.Controls.Add(this.ButtonTranfer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,6 +79,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(991, 54);
             this.panel1.TabIndex = 1;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(266, 14);
+            this.simpleButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(71, 32);
+            this.simpleButton1.TabIndex = 39;
+            this.simpleButton1.Text = "引入";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // ButtonWrite
             // 
@@ -99,15 +119,32 @@
             this.ButtonTranfer.Text = "转换";
             this.ButtonTranfer.Click += new System.EventHandler(this.ButtonTranfer_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.richTextBox1);
+            this.panel2.Controls.Add(this.gridControl1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(991, 554);
+            this.panel2.TabIndex = 2;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(597, 20);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(325, 375);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // gridControl1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gridControl1.Location = new System.Drawing.Point(3, 2);
+            this.gridControl1.Location = new System.Drawing.Point(0, -3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(991, 556);
+            this.gridControl1.Size = new System.Drawing.Size(575, 558);
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -135,6 +172,15 @@
             this.gridView1.OptionsFind.AllowFindPanel = false;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // 类别ID
+            // 
+            this.类别ID.Caption = "类别ID";
+            this.类别ID.FieldName = "CategoryID";
+            this.类别ID.Name = "类别ID";
+            this.类别ID.Visible = true;
+            this.类别ID.VisibleIndex = 0;
+            this.类别ID.Width = 119;
             // 
             // 组号
             // 
@@ -172,15 +218,6 @@
             this.标题.VisibleIndex = 4;
             this.标题.Width = 179;
             // 
-            // 类别ID
-            // 
-            this.类别ID.Caption = "类别ID";
-            this.类别ID.FieldName = "CategoryID";
-            this.类别ID.Name = "类别ID";
-            this.类别ID.Visible = true;
-            this.类别ID.VisibleIndex = 0;
-            this.类别ID.Width = 119;
-            // 
             // 内容
             // 
             this.内容.Caption = "内容";
@@ -189,6 +226,13 @@
             this.内容.Visible = true;
             this.内容.VisibleIndex = 5;
             this.内容.Width = 319;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(109, 18);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 25);
+            this.textBox1.TabIndex = 40;
             // 
             // Transfer
             // 
@@ -202,6 +246,8 @@
             this.Load += new System.EventHandler(this.Transfer_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -221,5 +267,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn 标题;
         private DevExpress.XtraGrid.Columns.GridColumn 类别ID;
         private DevExpress.XtraGrid.Columns.GridColumn 内容;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

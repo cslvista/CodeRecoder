@@ -95,12 +95,6 @@
       <DependentUpon>AlterGroupName.cs</DependentUpon>
     </Compile>
     <Compile Include="DataPath.cs" />
-    <Compile Include="DelItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DelItem.Designer.cs">
-      <DependentUpon>DelItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainBody.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,9 +138,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlterGroupName.resx">
       <DependentUpon>AlterGroupName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DelItem.resx">
-      <DependentUpon>DelItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileItem.resx">
       <DependentUpon>FileItem.cs</DependentUpon>

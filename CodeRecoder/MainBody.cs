@@ -72,8 +72,8 @@ namespace CodeRecoder
 
         private void main_Load(object sender, EventArgs e)
         {
-            searchControl1.Properties.NullValuePrompt = " ";
-            searchControl2.Properties.NullValuePrompt = "搜索类别名称";
+            searchControl1.Properties.NullValuePrompt = "请输入标题";
+            searchControl2.Properties.NullValuePrompt = "请输入类别名称";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
 
             Category.Columns.Add("ID", typeof(int));
@@ -146,7 +146,7 @@ namespace CodeRecoder
         {
             try
             {
-                if (MessageBox.Show(string.Format("是否删除'{0}'？", gridView1.GetFocusedRowCellDisplayText("Category").ToString()), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                if (MessageBox.Show(string.Format("是否删除'{0}'？", gridView2.GetFocusedRowCellDisplayText("ItemName").ToString()), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
                 {
                     return;
                 }
@@ -158,20 +158,20 @@ namespace CodeRecoder
 
             try
             {
-                DelItem form = new DelItem();
-                form.ID = gridView1.GetFocusedRowCellValue("ID").ToString();
-                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
-                form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
-                form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
-                form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
-                form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
-                form.Show(this);
+                string sql = sql = string.Format("delete from Item where CategoryID='{0}' and GroupID='{1}' and ItemID='{2}' and ItemName='{3}';", gridView1.GetFocusedRowCellDisplayText("ID").ToString(), gridView2.GetFocusedRowCellDisplayText("GroupID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemName").ToString())               
+                           + " VACUUM";
+                SQLiteCommand comm = new SQLiteCommand(sql, conn);
+                conn.Open();
+                comm.ExecuteNonQuery();
+                conn.Close();
+                SearchItem();
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show("错误1:" + ex.Message, "提示");
+                return;
             }
-            
+
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
@@ -229,16 +229,21 @@ namespace CodeRecoder
         }
 
         private void gridControl2_DoubleClick(object sender, EventArgs e)
-        {            
-            FileItem form = new FileItem();
-            form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
-            form.Category= gridView1.GetFocusedRowCellValue("Category").ToString();
-            form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
-            form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
-            form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
-            form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
-            form.alter = true;
-            form.Show(this);
+        {
+            try
+            {
+                FileItem form = new FileItem();
+                form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
+                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+                form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
+                form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
+                form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
+                form.ItemName = gridView2.GetFocusedRowCellValue("ItemName").ToString();
+                form.alter = true;
+                form.Show(this);
+            }
+            catch { }
+            
         }
 
 

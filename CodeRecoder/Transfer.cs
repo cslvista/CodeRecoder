@@ -30,7 +30,7 @@ namespace CodeRecoder
             Item.Columns.Add("GroupName", typeof(string));
             Item.Columns.Add("ItemID", typeof(string));
             Item.Columns.Add("ItemName", typeof(string));
-            Item.Columns.Add("ItemSolution", typeof(Byte []));
+            Item.Columns.Add("ItemSolution", typeof(byte []));
             Item.Columns.Add("Time", typeof(string));
 
             string sql = string.Format("select * from Item");
@@ -57,7 +57,17 @@ namespace CodeRecoder
             {
                 byte[] bWrite = null;
                 byte[] bWrite1 = null;
-                bWrite = System.Text.Encoding.Default.GetBytes(Item.Rows[i]["ItemSolution"].ToString());
+
+                MemoryStream mstream = new MemoryStream(Item.Rows[i]["ItemSolution"] as byte[]);
+                richTextBox1.LoadFile(mstream, RichTextBoxStreamType.RichText);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    richTextBox1.SaveFile(ms, RichTextBoxStreamType.RichText);
+                    bWrite = ms.ToArray();
+                }
+
+               
                 using (MemoryStream ms = new MemoryStream())
                 {
                     using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress))
@@ -97,6 +107,12 @@ namespace CodeRecoder
 
 
 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            int a = Convert.ToInt32(textBox1.Text);
+            richTextBox1.Text = System.Text.Encoding.Default.GetString((byte[])Item.Rows[a]["ItemSolution"]);
         }
     }
 }

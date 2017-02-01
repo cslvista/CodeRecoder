@@ -161,7 +161,8 @@ namespace CodeRecoder
             }
             else if (alter == true)
             {
-                sql = string.Format("update Item set ItemName='{0}',Time='{1}',ItemSolution=@ItemSolution where CategoryID='{2}' and GroupID='{3}' and ItemID='{4}'", textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), CategoryID, GroupID, ItemID);
+                sql = string.Format("update Item set ItemName='{0}',Time='{1}',ItemSolution=@ItemSolution where CategoryID='{2}' and GroupID='{3}' and ItemID='{4}';", textBox3.Text, DateTime.Now.ToString("yyyy-MM-dd HH:mm"), CategoryID, GroupID, ItemID)
+                    + "VACUUM;";
             }
 
             byte[] bWrite = null;
@@ -211,25 +212,7 @@ namespace CodeRecoder
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("select ItemSolution from Item where CategoryID='{0}',GroupID='{0}',ItemID='{0}'",CategoryID,GroupID,ItemID);
-            try
-            {
-                conn.Open();
-                SQLiteCommand comm = new SQLiteCommand(sql, conn);
-                SQLiteDataReader reader = comm.ExecuteReader();
-                reader.Read();
-                MemoryStream mstream = new MemoryStream(reader[0] as byte[]);
-                richTextBox1.LoadFile(mstream, RichTextBoxStreamType.RichText);
-                mstream.Close();
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                conn.Close();
-                MessageBox.Show(ex.Message);
-                return;
-            }
+            Details_Load(sender, e);
         }
 
         private void 粘贴ToolStripMenuItem_Click(object sender, EventArgs e)
