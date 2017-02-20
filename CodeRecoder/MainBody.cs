@@ -72,6 +72,7 @@ namespace CodeRecoder
 
         private void main_Load(object sender, EventArgs e)
         {
+            UILocation();
             searchControl1.Properties.NullValuePrompt = "请输入标题";
             searchControl2.Properties.NullValuePrompt = "请输入类别名称";
             gridView2.OptionsBehavior.AutoExpandAllGroups = true;
@@ -87,6 +88,18 @@ namespace CodeRecoder
             Item.Columns.Add("Time", typeof(string));
 
             SearchCategory();
+        }
+
+        private void UILocation()
+        {
+            
+            tableLayoutPanel1.RowStyles[1].Height = searchControl2.Height + toolStrip1.Height + 13;
+            int height = (panelControl1.Height - ButtonAdd.Height) / 2;
+            ButtonAdd.Location = new Point(ButtonAdd.Location.X, height);
+            ButtonAlter.Location = new Point(ButtonAlter.Location.X, height);
+            ButtonDelete.Location = new Point(ButtonDelete.Location.X, height);
+            ButtonRefresh.Location = new Point(ButtonRefresh.Location.X, height);
+            searchControl1.Location= new Point(searchControl1.Location.X, (panelControl1.Height - searchControl1.Height) / 2);
         }
 
         public void SearchCategory()
@@ -430,6 +443,22 @@ namespace CodeRecoder
         {
             Transfer form = new Transfer();
             form.Show();
+        }
+
+        private void simpleButton1_Click_2(object sender, EventArgs e)
+        {
+            MessageBox.Show(tableLayoutPanel1.RowStyles[1].Height.ToString());
+        }
+
+        private void 复制数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DBCopy form = new DBCopy();
+            form.Show();
+        }
+
+        private void 打开位置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Explorer.exe", Application.StartupPath);
         }
     }
 }

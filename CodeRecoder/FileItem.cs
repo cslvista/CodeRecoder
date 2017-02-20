@@ -36,7 +36,7 @@ namespace CodeRecoder
         private void Details_Load(object sender, EventArgs e)
         {
             this.Text = Category;
-
+            colorPickEdit1.EditValue = Color.Red;
             if (alter == true)//则获取答案
             {
                 string sql = string.Format("select ItemSolution from Item where CategoryID='{0}' and GroupID='{1}' and ItemID='{2}'", CategoryID, GroupID, ItemID);
@@ -249,6 +249,11 @@ namespace CodeRecoder
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionColor = (Color)colorPickEdit1.EditValue;
         }
     }
 }
