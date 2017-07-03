@@ -52,7 +52,7 @@ namespace CodeRecoder
         public void SearchItem()
         {
             Item.Clear();           
-            string sql = string.Format("select * from Item where CategoryID='{0}'", gridView1.GetFocusedRowCellValue("ID").ToString());
+            string sql = string.Format("select a.*,b.Category from Item a inner join Category b on a.CategoryID=b.ID where a.CategoryID='{0}'", gridView1.GetFocusedRowCellValue("ID").ToString());
             SQLiteCommand comm = new SQLiteCommand(sql, conn);
             try
             {
@@ -81,6 +81,7 @@ namespace CodeRecoder
             Category.Columns.Add("Category", typeof(string));
 
             Item.Columns.Add("CategoryID", typeof(string));
+            Item.Columns.Add("Category", typeof(string));
             Item.Columns.Add("GroupID", typeof(string));
             Item.Columns.Add("GroupName", typeof(string));
             Item.Columns.Add("ItemID", typeof(string));
@@ -99,6 +100,7 @@ namespace CodeRecoder
             ButtonAlter.Location = new Point(ButtonAlter.Location.X, height);
             ButtonDelete.Location = new Point(ButtonDelete.Location.X, height);
             ButtonRefresh.Location = new Point(ButtonRefresh.Location.X, height);
+            ButtonAll.Location = new Point(ButtonAll.Location.X, height);
             searchControl1.Location= new Point(searchControl1.Location.X, (panelControl1.Height - searchControl1.Height) / 2);
         }
 
@@ -128,8 +130,8 @@ namespace CodeRecoder
             try
             {
                 FileItem form = new FileItem();
-                form.CategoryID = gridView1.GetFocusedRowCellValue("ID").ToString();
-                form.Category = gridView1.GetFocusedRowCellValue("Category").ToString();
+                form.CategoryID = gridView2.GetFocusedRowCellValue("CategoryID").ToString();
+                form.Category = gridView2.GetFocusedRowCellValue("Category").ToString();
                 form.GroupID = gridView2.GetFocusedRowCellValue("GroupID").ToString();
                 form.GroupName = gridView2.GetFocusedRowCellValue("GroupName").ToString();
                 form.ItemID = gridView2.GetFocusedRowCellValue("ItemID").ToString();
@@ -171,7 +173,7 @@ namespace CodeRecoder
 
             try
             {
-                string sql = sql = string.Format("delete from Item where CategoryID='{0}' and GroupID='{1}' and ItemID='{2}' and ItemName='{3}';", gridView1.GetFocusedRowCellDisplayText("ID").ToString(), gridView2.GetFocusedRowCellDisplayText("GroupID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemName").ToString())               
+                string sql = sql = string.Format("delete from Item where CategoryID='{0}' and GroupID='{1}' and ItemID='{2}' and ItemName='{3}';", gridView2.GetFocusedRowCellDisplayText("CategoryID").ToString(), gridView2.GetFocusedRowCellDisplayText("GroupID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemID").ToString(), gridView2.GetFocusedRowCellDisplayText("ItemName").ToString())               
                            + " VACUUM";
                 SQLiteCommand comm = new SQLiteCommand(sql, conn);
                 conn.Open();
@@ -243,6 +245,9 @@ namespace CodeRecoder
 
         private void gridControl2_DoubleClick(object sender, EventArgs e)
         {
+            ButtonAlter_Click(sender, e);
+            return;
+
             try
             {
                 FileItem form = new FileItem();
@@ -459,6 +464,27 @@ namespace CodeRecoder
         private void 打开位置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("Explorer.exe", Application.StartupPath);
+        }
+
+        private void ButtonAll_Click(object sender, EventArgs e)
+        {
+            Item.Clear();
+            string sql = string.Format("select a.*,b.Category from Item a inner join Category b on a.CategoryID=b.ID");
+            SQLiteCommand comm = new SQLiteCommand(sql, conn);
+            try
+            {
+                conn.Open();
+                DataAdapter = new SQLiteDataAdapter(comm);
+                conn.Close();
+                DataAdapter.Fill(Item);
+                gridControl2.DataSource = Item;
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
     }
 }

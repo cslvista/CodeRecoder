@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainBody));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.ButtonAll = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
             this.ButtonAdd = new DevExpress.XtraEditors.SimpleButton();
@@ -55,6 +56,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.修改组名toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.类别ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.类别 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.组号 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.组名 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.项目编号 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -112,6 +115,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.ButtonAll);
             this.panelControl1.Controls.Add(this.ButtonRefresh);
             this.panelControl1.Controls.Add(this.searchControl1);
             this.panelControl1.Controls.Add(this.ButtonAdd);
@@ -125,12 +129,25 @@
             this.panelControl1.TabIndex = 4;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // ButtonAll
+            // 
+            this.ButtonAll.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ButtonAll.Appearance.Options.UseFont = true;
+            this.ButtonAll.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAll.Image")));
+            this.ButtonAll.Location = new System.Drawing.Point(281, 16);
+            this.ButtonAll.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonAll.Name = "ButtonAll";
+            this.ButtonAll.Size = new System.Drawing.Size(54, 24);
+            this.ButtonAll.TabIndex = 8;
+            this.ButtonAll.Text = "全部";
+            this.ButtonAll.Click += new System.EventHandler(this.ButtonAll_Click);
+            // 
             // ButtonRefresh
             // 
             this.ButtonRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonRefresh.Appearance.Options.UseFont = true;
             this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
-            this.ButtonRefresh.Location = new System.Drawing.Point(217, 16);
+            this.ButtonRefresh.Location = new System.Drawing.Point(216, 16);
             this.ButtonRefresh.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(53, 24);
@@ -141,7 +158,7 @@
             // searchControl1
             // 
             this.searchControl1.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
-            this.searchControl1.Location = new System.Drawing.Point(290, 17);
+            this.searchControl1.Location = new System.Drawing.Point(354, 17);
             this.searchControl1.Margin = new System.Windows.Forms.Padding(2);
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -161,7 +178,7 @@
             this.ButtonAdd.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonAdd.Appearance.Options.UseFont = true;
             this.ButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAdd.Image")));
-            this.ButtonAdd.Location = new System.Drawing.Point(23, 16);
+            this.ButtonAdd.Location = new System.Drawing.Point(21, 16);
             this.ButtonAdd.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(53, 24);
@@ -174,7 +191,7 @@
             this.ButtonDelete.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonDelete.Appearance.Options.UseFont = true;
             this.ButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.Image")));
-            this.ButtonDelete.Location = new System.Drawing.Point(152, 16);
+            this.ButtonDelete.Location = new System.Drawing.Point(151, 16);
             this.ButtonDelete.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(53, 24);
@@ -187,7 +204,7 @@
             this.ButtonAlter.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonAlter.Appearance.Options.UseFont = true;
             this.ButtonAlter.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAlter.Image")));
-            this.ButtonAlter.Location = new System.Drawing.Point(88, 16);
+            this.ButtonAlter.Location = new System.Drawing.Point(86, 16);
             this.ButtonAlter.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAlter.Name = "ButtonAlter";
             this.ButtonAlter.Size = new System.Drawing.Size(53, 24);
@@ -370,6 +387,8 @@
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.类别ID,
+            this.类别,
             this.组号,
             this.组名,
             this.项目编号,
@@ -386,6 +405,18 @@
             this.gridView2.CustomDrawGroupRow += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gridView2_CustomDrawGroupRow);
             this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             this.gridView2.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView2_CustomColumnDisplayText);
+            // 
+            // 类别ID
+            // 
+            this.类别ID.Caption = "类别ID";
+            this.类别ID.FieldName = "CategoryID";
+            this.类别ID.Name = "类别ID";
+            // 
+            // 类别
+            // 
+            this.类别.Caption = "类别";
+            this.类别.FieldName = "Category";
+            this.类别.Name = "类别";
             // 
             // 组号
             // 
@@ -625,6 +656,9 @@
         private System.Windows.Forms.ToolStripMenuItem 清理数据库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制数据库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开位置ToolStripMenuItem;
+        private DevExpress.XtraEditors.SimpleButton ButtonAll;
+        private DevExpress.XtraGrid.Columns.GridColumn 类别ID;
+        private DevExpress.XtraGrid.Columns.GridColumn 类别;
     }
 }
 
